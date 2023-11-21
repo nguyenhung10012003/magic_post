@@ -1,9 +1,10 @@
 // components/SimpleComponent.tsx
 import React from 'react';
+import LeaderDash from "@/components/CompanyLeadership/LeaderDash";
 
 const SimpleComponent: React.FC = () => {
     return (
-        role == "leader" ? <LeaderDash></LeaderDash>
+        <LeaderDash></LeaderDash>
     );
 };
 
