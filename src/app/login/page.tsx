@@ -21,7 +21,7 @@ export default function Example() {
         const result = await login({username: username, password: password});
         if (result) {
           console.log(result);
-          router.push('/dashboard');
+          router.push('D:/magic_post/src/app/dashboard/page.tsx');
         }
       } catch (e) {
         console.log(e);

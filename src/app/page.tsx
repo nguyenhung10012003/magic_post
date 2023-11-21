@@ -60,7 +60,7 @@ export default function Home() {
               }
             </div>
           </ul>
-        </nav>
+        </nav>  
       </header>
       <section className="mt-24 mx-auto max-w-screen-xl pb-4 px-4 sm:px-8 flex-grow">
         <div className="text-center space-y-4">
