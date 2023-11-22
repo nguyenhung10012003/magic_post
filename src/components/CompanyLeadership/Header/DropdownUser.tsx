@@ -42,24 +42,24 @@ const DropdownUser = () => {
         className="flex items-center gap-4"
         href="#"
       >
-        <span className="hidden text-right lg:block">
+        <span className="text-right lg:block">
           <span className="block text-sm font-medium text-black dark:text-white">
-            Thomas Anree
+            Hai Mai
           </span>
-          <span className="block text-xs">UX Designer</span>
+          <span className="block text-xs">Company Leader</span>
         </span>
 
         <span className="h-12 w-12 rounded-full">
           <Image
             width={112}
             height={112}
-            src={"/images/user/user-01.png"}
+            src={"/images/user/companylead.png"}
             alt="User"
           />
         </span>
 
         <svg
-          className="hidden fill-current sm:block"
+          className="fill-current sm:block"
           width="12"
           height="8"
           viewBox="0 0 12 8"

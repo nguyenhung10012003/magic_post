@@ -22,7 +22,7 @@ export default function Home() {
         <nav className="items-center pt-5 px-4 mx-auto max-w-screen-xl sm:px-8 md:flex md:space-x-6">
           <div className="flex justify-between">
             <Link href="/">
-              <Image src="/Logo.svg" alt="Magic post" width={80} height={40}/>
+              <Image src="/images/Logo.svg" alt="Magic post" width={80} height={40}/>
             </Link>
             <button className="text-gray-500 outline-none md:hidden"
                     onClick={() => setState(!state)}

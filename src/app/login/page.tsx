@@ -32,7 +32,7 @@ export default function Example() {
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <Image className="mx-auto" src="/Logo%20with%20text.svg" alt="Magic post" width={100} height={40}/>
+        <Image className="mx-auto" src="/images/Logo%20with%20text.svg" alt="Magic post" width={100} height={40}/>
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
           Đăng nhập vào tài khoản của bạn
         </h2>

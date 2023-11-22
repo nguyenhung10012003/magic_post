@@ -21,20 +21,20 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   );
 
   // close on click outside
-  useEffect(() => {
-    const clickHandler = ({ target }: MouseEvent) => {
-      if (!sidebar.current || !trigger.current) return;
-      if (
-        !sidebarOpen ||
-        sidebar.current.contains(target) ||
-        trigger.current.contains(target)
-      )
-        return;
-      setSidebarOpen(false);
-    };
-    document.addEventListener("click", clickHandler);
-    return () => document.removeEventListener("click", clickHandler);
-  });
+  // useEffect(() => {
+  //   const clickHandler = ({ target }: MouseEvent) => {
+  //     if (!sidebar.current || !trigger.current) return;
+  //     if (
+  //       !sidebarOpen ||
+  //       sidebar.current.contains(target) ||
+  //       trigger.current.contains(target)
+  //     )
+  //       return;
+  //     setSidebarOpen(false);
+  //   };
+  //   document.addEventListener("click", clickHandler);
+  //   return () => document.removeEventListener("click", clickHandler);
+  // });
 
   // close if the esc key is pressed
   useEffect(() => {
@@ -66,7 +66,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
       <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5 mt-4">
         <Link href="/">
           <Image
-            width={160}
+            width={112}
             height={32}
             src={"/images/Logo with text.svg"}
             alt="Logo"
@@ -86,6 +86,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             height="18"
             viewBox="0 0 20 18"
             fill="none"
+            color="white"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
