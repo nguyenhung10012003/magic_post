@@ -17,7 +17,7 @@ const LeaderDash = () => {
     return (
         <html lang="en">
             <body suppressHydrationWarning={true}>
-                <div className="dark:bg-boxdark-2 dark:text-bodydark">
+                <div>
                 {loading ? (
                     <Loader />
                 ) : (
