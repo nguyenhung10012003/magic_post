@@ -4,7 +4,6 @@ import {useRouter} from "next/navigation";
 const SearchBar = () => {
   const [ladingCode, setLadingCode] = useState("");
   const router = useRouter();
-  console.log(ladingCode);
   const handleSubmit = () => {
     if (ladingCode.length === 0) router.push("/search");
     else router.push(`/search?ladingCode=${ladingCode}`)
@@ -48,7 +47,7 @@ const SearchBar = () => {
             e.preventDefault();
             handleSubmit();
           }}
-          className="text-black absolute end-5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-2xl text-sm px-4 py-2"
+          className="text-white absolute end-5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-2xl text-sm px-4 py-2"
         >
           Tra cứu
         </button>

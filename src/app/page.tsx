@@ -13,40 +13,60 @@ export default function Home() {
     {title: "Tra cứu", path: "/search"},
     {title: "Hướng dẫn", path: "/guide"},
     {title: "Liên hệ", path: "/contact"},
-    {title: "Đối tác", path: "#"},
-    {title: "Đăng nhập", path: "/login"}
+    {title: "Đối tác", path: "#"}
   ]
 
   return (
     <main className="flex flex-col min-h-screen">
       <header>
-        <nav className="items-center pt-5 px-4 mx-auto max-w-screen-xl sm:px-8 md:flex md:justify-between">
-          <div className="flex items-center">
+        <nav className="items-center pt-5 px-4 mx-auto max-w-screen-xl sm:px-8 md:flex md:space-x-6">
+          <div className="flex justify-between">
             <Link href="/">
-              <Image src="/images/Logo.svg" alt="Magic post" width={80} height={40} />
+              <Image src="/images/Logo.svg" alt="Magic post" width={80} height={40}/>
             </Link>
-            <div className="ml-auto space-x-6 md:space-x-2 md:flex items-center">
+            <button className="text-gray-500 outline-none md:hidden"
+                    onClick={() => setState(!state)}
+            >
+              {
+                state ? (
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                       stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12"/>
+                  </svg>
+                ) : (
+
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                       stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16"/>
+                  </svg>
+                )
+              }
+            </button>
+          </div>
+          <ul className={`flex-1 justify-between mt-12 md:flex md:mt-0 ${state ? '' : 'hidden'}`}>
+            <li className="order-2 pb-5 md:pb-0">
+              <Link href="/login"
+                    className="py-3 px-6 rounded-md shadow-md text-white text-center bg-indigo-500 hover:bg-indigo-800 focus:shadow-none block md:inline">
+                Đăng nhập
+              </Link>
+            </li>
+            <div className="order-1 flex-1 justify-center items-center space-y-5 md:flex md:space-x-6 md:space-y-0">
               {
                 navigation.map((item, idx) => (
-                  <a
-                    key={idx}
-                    href={item.path}
-                    className="text-gray-700 hover:text-indigo-600 pr-10"
-                  >
-                    {item.title}
-                  </a>
+                  <li className="text-gray-700 hover:text-indigo-600" key={idx}>
+                    <a href={item.path}>{item.title}</a>
+                  </li>
                 ))
               }
             </div>
-          </div>
+          </ul>
         </nav>
       </header>
       <section className="mt-24 mx-auto max-w-screen-xl pb-4 px-4 sm:px-8 flex-grow">
         <div className="text-center space-y-4">
           <h1 className="text-gray-800 font-bold text-4xl md:text-5xl">
             CHUYỂN PHÁT NHANH VỚI
-            <span style={{ background: `linear-gradient(45deg, #008080, #0000FF)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}> MAGIC</span>
-            <span style={{ background: `linear-gradient(45deg, #FFA500, #FF1493)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}> POST</span>
+            <span className="text-indigo-600"> MAGIC POST </span>
           </h1>
           <p className="text-gray-500 max-w-xl mx-auto leading-relaxed">
             Là đơn vị vận chuyển hàng đầu Việt Nam, chúng tôi cung cấp đầy đủ các dịch vụ vận chuyển tới khắp mọi miền
@@ -61,4 +81,3 @@ export default function Home() {
     </main>
   )
 }
-

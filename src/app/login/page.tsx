@@ -4,14 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import {useState} from "react";
 import {useRouter} from "next/navigation";
-import useLogin from "@/hook/useLogin";
+import {useAuth} from "@/hook/AuthContext";
 
 
 export default function Example() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [warning, setWarning] = useState<string | null>(null);
-  const {login} = useLogin();
+  const {login} = useAuth();
   const router = useRouter();
 
   const handleSignIn: () => void = async () => {
@@ -21,7 +21,7 @@ export default function Example() {
         const result = await login({username: username, password: password});
         if (result) {
           console.log(result);
-          router.push('D:/magic_post/src/app/dashboard/page.tsx');
+          router.push('/dashboard');
         }
       } catch (e) {
         console.log(e);
@@ -39,7 +39,7 @@ export default function Example() {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="mx-auto w-1/3 space-y-6">
+        <form className="space-y-6">
           <div>
             <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">
               Username
@@ -54,7 +54,7 @@ export default function Example() {
                 type="username"
                 autoComplete="username"
                 required
-                className="px-4 w-full block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 focus-visible:outline-0"
+                className="px-4 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 focus-visible:outline-0"
               />
             </div>
           </div>
@@ -87,25 +87,25 @@ export default function Example() {
           <div className="flex justify-center">
             <span className="text-red-500 mx-auto">{warning || ""}</span>
           </div>
-          <div className=" flex justify-center">
+          <div>
             <button
               onClick={(e) => {
                 e.preventDefault();
                 handleSignIn()
               }
               }
-              className="flex w-1/3 justify-center rounded-md bg-gray px-3 py-1.5 text-sm font-semibold leading-6 text-black hover:bg-secondary hover:text-white shadow-md hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Đăng nhập
             </button>
-          </div>
-          <div className="mt-5 flex justify-center">
+            <div className="mt-5 flex justify-center">
               <Link href="/"
                     className="font-semibold text-indigo-600 hover:text-indigo-500 mx-auto underline"
               >
                 Trở về trang chủ
               </Link>
             </div>
+          </div>
         </form>
       </div>
     </div>

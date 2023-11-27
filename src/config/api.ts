@@ -14,7 +14,7 @@ api.interceptors.request.use(async config => {
   if (isServer) {
 
     const {cookies} = (await import('next/headers'))
-      , token = cookies().get('token')?.value
+      , token = cookies().get('accessToken')?.value
 
     if (token) {
       config.headers['Authorization'] = `Bearer ${token}`
