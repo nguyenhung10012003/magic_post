@@ -40,8 +40,8 @@ const LeaderDash = () => {
 
                         {/* <!-- ===== Main Content Start ===== --> */}
                         <main>
-                        <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
-                            
+                        <div className="p-10 h-screen bg-gray-100">
+                            <Content></Content>
                         </div>
                         </main>
                         {/* <!-- ===== Main Content End ===== --> */}

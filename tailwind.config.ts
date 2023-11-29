@@ -208,7 +208,8 @@ const config: Config = {
       },
     },
     fontFamily: {
-      sans: ['Oswald', 'san-serif']
+      'sans': ['Oswald', 'san-serif'],
+      'poppins': ['Poppins', 'sans-serif']
     },
     colors: {
       current: "currentColor",
@@ -227,6 +228,22 @@ const config: Config = {
       graydark: "#333A48",
       "gray-2": "#F7F9FC",
       "gray-3": "#FAFAFA",
+      "gray-100": "#F7FAFC",
+      "gray-200": "#D2D6DC",
+      "gray-700": "#4A5568",
+      "gray-800": "#2D3748",
+      "gray-500": "#6B7280",
+      yellow: {
+        200: "#F6E05E",
+        800: "#B7791F",
+      },
+      green: {
+        200: "#68d391",
+        800: "#2f855a",
+      },
+      blue: {
+        500: '#3b82f6', 
+      },
       whiten: "#F1F5F9",
       whiter: "#F5F7FD",
       boxdark: "#24303F",
@@ -251,6 +268,10 @@ const config: Config = {
       "2xsm": "375px",
       xsm: "425px",
       "3xl": "2000px",
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
     },
 
   },

@@ -1,8 +1,8 @@
+import StaffManagement from "./StaffManagement";
+
 const Content = () => {
     return (
-        <div>
-            
-        </div>
+        <StaffManagement></StaffManagement>
     )
 }
 export default Content;
