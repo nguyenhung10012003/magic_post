@@ -1,12 +1,11 @@
 'use client'
 
-
 import Header from "./Header";
 import Sidebar from "./Sidebar";
-import {useEffect, useState} from "react";
+import {ReactNode, useEffect, useState} from "react";
 import Loader from "../Loader";
 
-const LeaderDash = () => {
+const LeaderDash = ({children}: { children: ReactNode }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loading, setLoading] = useState<boolean>(true);
 

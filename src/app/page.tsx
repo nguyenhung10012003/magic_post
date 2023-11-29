@@ -68,7 +68,7 @@ export default function Home() {
             CHUYỂN PHÁT NHANH VỚI
             <span className="text-indigo-600"> MAGIC POST </span>
           </h1>
-          <p className="text-gray-500 max-w-xl mx-auto leading-relaxed">
+          <p className="text-gray-700 max-w-xl mx-auto leading-relaxed">
             Là đơn vị vận chuyển hàng đầu Việt Nam, chúng tôi cung cấp đầy đủ các dịch vụ vận chuyển tới khắp mọi miền
             tổ quốc
           </p>

@@ -20,10 +20,10 @@ export default function Example() {
       try {
         const result = await login({username: username, password: password});
         if (result) {
-          console.log(result);
           router.push('/dashboard');
         }
       } catch (e) {
+        setWarning("Đã có lỗi xảy ra")
         console.log(e);
       }
     }

@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
     <AuthProvider>
-      <body suppressHydrationWarning={true} className={inter.className}>{children}
+      <body className={`bg-background-100 ${inter.className}`} suppressHydrationWarning={true}>{children}
       </body>
     </AuthProvider>
     </html>

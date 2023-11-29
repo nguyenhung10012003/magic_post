@@ -1,12 +1,13 @@
 'use client'
 import api from "@/config/api";
 import {createContext, ReactNode, useContext, useState} from 'react';
+import {deleteCookie, getCookie} from "cookies-next";
 
 const AuthContext = createContext<any>(null);
 
 
 export const AuthProvider = ({children}: { children: ReactNode }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [role, setRole] = useState<string | null | undefined>(getCookie("role"));
 
   const login = async (data: any) => {
     try {
@@ -19,7 +20,7 @@ export const AuthProvider = ({children}: { children: ReactNode }) => {
       document.cookie = `accessToken=${accessToken}; path=/; max-age=86400`; // Set the expiration time in seconds
       document.cookie = `refreshToken=${refreshToken}; path=/; max-age=86400`; // Set the expiration time in seconds
       document.cookie = `role=${role}; path=/; max-age=86400`;
-      setIsLoggedIn(true);
+      setRole(role);
 
       return result;
     } catch (error) {
@@ -30,17 +31,14 @@ export const AuthProvider = ({children}: { children: ReactNode }) => {
 
   const logout = () => {
     // Thực hiện logic đăng xuất và cập nhật trạng thái đăng nhập
-
-    setIsLoggedIn(false);
+    deleteCookie("accessToken");
+    deleteCookie("refreshToken");
+    deleteCookie("role");
+    setRole(null);
   };
 
-  const getRole = async () => {
-    const {cookies} = (await import('next/headers'))
-    return cookies().get('role')?.value;
-  }
-
   return (
-    <AuthContext.Provider value={{getRole, isLoggedIn, login, logout}}>
+    <AuthContext.Provider value={{role, login, logout}}>
       {children}
     </AuthContext.Provider>
   );
