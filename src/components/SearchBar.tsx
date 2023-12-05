@@ -39,7 +39,7 @@ const SearchBar = () => {
           value={ladingCode}
           onChange={(e) => setLadingCode(e.target.value)}
           id="default-search"
-          className="w-full p-4 ps-10 text-sm text-gray-900 border-2 border-gray-300 rounded-3xl bg-gray-50 focus:ring-blue-500 focus:border-blue-500 focus-visible:outline-0"
+          className="w-full p-4 ps-10 text-sm text-gray-900 dark:text-white border-2 border-borderColor1 rounded-3xl bg-gray-50 dark:bg-bgColor1 focus:ring-blue-500 focus:border-borderColor2 focus-visible:outline-0"
           placeholder="Tra cứu mã vận đơn của bạn"
         />
         <button

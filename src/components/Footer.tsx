@@ -1,25 +1,25 @@
 const Footer = () => {
   return (
-    <footer className="bg-background-100 mt-16">
+    <footer className="bg-backDropColor mt-16">
       <div className="mx-auto max-w-screen-xl px-4 pb-8 sm:px-6 lg:px-8">
         <div
-          className="pt-3 border-t border-gray-600 sm:flex sm:items-center sm:justify-between"
+          className="pt-3 border-t border-borderColor3 sm:flex sm:items-center sm:justify-between"
         >
           <ul className="flex flex-wrap justify-center gap-4 text-xs lg:justify-end">
             <li>
-              <a href="#" className="text-gray-700 transition hover:opacity-75">
+              <a href="#" className="text-textColor3 transition hover:opacity-75">
                 Terms & Conditions
               </a>
             </li>
 
             <li>
-              <a href="#" className="text-gray-700 transition hover:opacity-75">
+              <a href="#" className="text-textColor3  transition hover:opacity-75">
                 Privacy Policy
               </a>
             </li>
 
             <li>
-              <a href="#" className="text-gray-700 transition hover:opacity-75">
+              <a href="#" className="text-textColor3  transition hover:opacity-75">
                 Cookies
               </a>
             </li>
@@ -31,7 +31,7 @@ const Footer = () => {
                 href="/"
                 rel="noreferrer"
                 target="_blank"
-                className="text-gray-700 transition hover:opacity-75"
+                className="text-textColor3 transition hover:opacity-75"
               >
                 <span className="sr-only">Facebook</span>
 
@@ -55,7 +55,7 @@ const Footer = () => {
                 href="/"
                 rel="noreferrer"
                 target="_blank"
-                className="text-gray-700 transition hover:opacity-75"
+                className="text-textColor3  transition hover:opacity-75"
               >
                 <span className="sr-only">Instagram</span>
 
@@ -78,7 +78,7 @@ const Footer = () => {
                 href="/"
                 rel="noreferrer"
                 target="_blank"
-                className="text-gray-700 transition hover:opacity-75"
+                className="text-textColor3  transition hover:opacity-75"
               >
                 <span className="sr-only">GitHub</span>
 

@@ -3,6 +3,7 @@ import {Inter} from 'next/font/google'
 import './globals.css'
 import React from "react";
 import {AuthProvider} from "@/hook/AuthContext";
+import {ThemeContext} from "@/hook/ThemeContext";
 
 const inter = Inter({subsets: ['latin']})
 
@@ -17,11 +18,16 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-    <AuthProvider>
-      <body className={`bg-background-100 ${inter.className}`} suppressHydrationWarning={true}>{children}
-      </body>
-    </AuthProvider>
+    <html lang="en" suppressHydrationWarning>
+
+    <body className={`bg-backDropColor ${inter.className}`} suppressHydrationWarning={true}>
+      <ThemeContext>
+        <AuthProvider>
+          {children}
+        </AuthProvider>
+      </ThemeContext>
+    </body>
+
     </html>
   )
 }
