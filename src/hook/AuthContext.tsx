@@ -7,20 +7,22 @@ const AuthContext = createContext<any>(null);
 
 
 export const AuthProvider = ({children}: { children: ReactNode }) => {
-  const [role, setRole] = useState<string | null | undefined>(getCookie("role"));
-
+  const [user, setUser] = useState<IUser | null | undefined>(
+    {idBranch: getCookie("idBranch"), role: getCookie("role")}
+  );
   const login = async (data: any) => {
     try {
       // Assuming the API response contains user data after successful login
       const result = await api.post("/login", data).then(res => res.data);
       // Assuming the API response contains accessToken and refreshToken
-      const {accessToken, refreshToken, role} = result.data;
+      const {accessToken, refreshToken, role, idBranch} = result.data;
 
       // Set tokens in document.cookie
-      document.cookie = `accessToken=${accessToken}; path=/; max-age=86400`; // Set the expiration time in seconds
-      document.cookie = `refreshToken=${refreshToken}; path=/; max-age=86400`; // Set the expiration time in seconds
-      document.cookie = `role=${role}; path=/; max-age=86400`;
-      setRole(role);
+      document.cookie = `accessToken=${accessToken}; path=/; max-age=864000`; // Set the expiration time in seconds
+      document.cookie = `refreshToken=${refreshToken}; path=/; max-age=864000`; // Set the expiration time in seconds
+      document.cookie = `role=${role}; path=/; max-age=864000`;
+      document.cookie = `idBranch=${idBranch ? idBranch : undefined}; path=/; max-age=864000`
+      setUser({role: role, idBranch: idBranch});
 
       return result;
     } catch (error) {
@@ -30,15 +32,15 @@ export const AuthProvider = ({children}: { children: ReactNode }) => {
   };
 
   const logout = () => {
-    // Thực hiện logic đăng xuất và cập nhật trạng thái đăng nhập
     deleteCookie("accessToken");
     deleteCookie("refreshToken");
     deleteCookie("role");
-    setRole(null);
+    deleteCookie("idBranch");
+    setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{role, login, logout}}>
+    <AuthContext.Provider value={{user, login, logout}}>
       {children}
     </AuthContext.Provider>
   );

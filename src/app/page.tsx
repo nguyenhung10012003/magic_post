@@ -24,7 +24,7 @@ export default function Home() {
             <Link href="/">
               <Image src="/images/Logo.svg" alt="Magic post" width={80} height={40}/>
             </Link>
-            <button className="text-gray-500 outline-none md:hidden"
+            <button className="text-textColor1 outline-none md:hidden"
                     onClick={() => setState(!state)}
             >
               {
@@ -53,7 +53,7 @@ export default function Home() {
             <div className="order-1 flex-1 justify-center items-center space-y-5 md:flex md:space-x-6 md:space-y-0">
               {
                 navigation.map((item, idx) => (
-                  <li className="text-gray-700 hover:text-indigo-600" key={idx}>
+                  <li className="text-textColor2 hover:text-textColor3" key={idx}>
                     <a href={item.path}>{item.title}</a>
                   </li>
                 ))
@@ -64,11 +64,11 @@ export default function Home() {
       </header>
       <section className="mt-24 mx-auto max-w-screen-xl pb-4 px-4 sm:px-8 flex-grow">
         <div className="text-center space-y-4">
-          <h1 className="text-gray-800 font-bold text-4xl md:text-5xl">
+          <h1 className="text-textColor1 font-bold text-4xl md:text-5xl">
             CHUYỂN PHÁT NHANH VỚI
-            <span className="text-indigo-600"> MAGIC POST </span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-b from-gradientTextFrom to-gradientTextTo"> MAGIC POST </span>
           </h1>
-          <p className="text-gray-700 max-w-xl mx-auto leading-relaxed">
+          <p className="text-textColor3 max-w-xl mx-auto leading-relaxed">
             Là đơn vị vận chuyển hàng đầu Việt Nam, chúng tôi cung cấp đầy đủ các dịch vụ vận chuyển tới khắp mọi miền
             tổ quốc
           </p>
