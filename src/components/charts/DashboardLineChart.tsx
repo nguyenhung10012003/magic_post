@@ -1,16 +1,17 @@
 import Card from "@/components/card";
-import {DateRange} from "@/utils/date";
+import {DateRange, subDays} from "@/utils/date";
 import Datepicker from "react-tailwindcss-datepicker";
 import LineChart from "@/components/charts/LineChart";
 import {createLineChartOption} from "@/utils/chart";
 import {useTheme} from "next-themes";
 
 export default function DashboardLineChart(
-  {chartTitle = "", chartDatas, dateRange, setDateRange}: {
+  {chartTitle = "", chartDatas, dateRange, setDateRange, isLoading}: {
     chartTitle: string,
-    chartDatas: ILineChartData[],
+    chartDatas?: ILineChartData[],
     dateRange: DateRange,
-    setDateRange: any
+    setDateRange: any,
+    isLoading: boolean
   }) {
   const {theme} = useTheme();
   return (
@@ -28,6 +29,8 @@ export default function DashboardLineChart(
             placeholder={"Khoảng thời gian"}
             showShortcuts={true}
             showFooter={true}
+            minDate={subDays(new Date(), 365)}
+            maxDate={new Date()}
             configs={{
               shortcuts: {
                 today: "",
@@ -40,11 +43,15 @@ export default function DashboardLineChart(
           />
         </div>
       </div>
-      <div>
-        <LineChart
-          chartData={chartDatas}
-          chartOptions={createLineChartOption(theme || 'light')}
-        />
+      <div className={"h-[315px] flex flex-col justify-center"}>
+        {isLoading ?
+          <div
+            className="border-gray-300 h-10 w-10 animate-spin rounded-full border-8 border-t-blue-600 mx-auto"/> :
+          <LineChart
+            chartData={chartDatas}
+            chartOptions={createLineChartOption(theme || 'light')}
+          />
+        }
       </div>
     </Card>
   )
