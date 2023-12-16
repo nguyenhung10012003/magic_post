@@ -1,9 +1,14 @@
-import StaffManagement from "@/components/CompanyLeadership/StaffManagement";
+'use client'
+import {useAuth} from "@/hook/AuthContext";
+import StaffList from "@/app/dashboard/user/StaffList";
+
 
 export default function User() {
+  const {user} = useAuth();
+
   return (
     <div>
-      <StaffManagement />
+      <StaffList user={user}/>
     </div>
   )
 }

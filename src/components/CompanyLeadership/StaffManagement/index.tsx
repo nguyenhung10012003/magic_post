@@ -1,11 +1,10 @@
-import StaffList from "./StaffList"
-import StaffProfile from "@/components/CompanyLeadership/StaffManagement/StaffProfile";
+import StaffList from "../../../app/dashboard/user/StaffList"
 import React from "react";
 
 const StaffManagement = () => {
-    return(
-        <StaffList></StaffList>
-        // <StaffProfile></StaffProfile>
-    )
+  return (
+    <StaffList></StaffList>
+
+  )
 }
 export default StaffManagement;

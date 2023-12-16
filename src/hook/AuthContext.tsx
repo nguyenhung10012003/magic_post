@@ -20,9 +20,9 @@ export const AuthProvider = ({children}: { children: ReactNode }) => {
       // Set tokens in document.cookie
       document.cookie = `accessToken=${accessToken}; path=/; max-age=864000`; // Set the expiration time in seconds
       document.cookie = `refreshToken=${refreshToken}; path=/; max-age=864000`; // Set the expiration time in seconds
-      document.cookie = `role=${role}; path=/; max-age=864000`;
+      document.cookie = `role=${role.toLowerCase()}; path=/; max-age=864000`;
       document.cookie = `idBranch=${idBranch ? idBranch : undefined}; path=/; max-age=864000`
-      setUser({role: role, idBranch: idBranch});
+      setUser({role: role.toLowerCase(), idBranch: idBranch});
 
       return result;
     } catch (error) {
