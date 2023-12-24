@@ -23,13 +23,13 @@ const DashboardLayout = ({children, user}: { children: React.ReactNode, user: an
               md:pr-2 xl:ml-[323px]`}
         >
           {/* Routes */}
-          <div>
+          <div className="min-h-screen flex flex-col">
             <Navbar
               onOpenSidenav={() => setOpen(!open)}
               brandText={getActiveRoute(routes, pathname)}
               secondary={getActiveNavbar(routes, pathname)}
             />
-            <div className="mx-auto min-h-screen p-2 !pt-[55px] md:p-2">
+            <div className="p-2 md:mx-1 !pt-[40px] md:p-2 min-h-[70vh] md:min-h-[75vh]">
               {children}
             </div>
             <div className="p-3">

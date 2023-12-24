@@ -28,6 +28,7 @@ const config: Config = {
         borderColor1: 'var(--border-color-1)',
         borderColor2: 'var(--border-color-2)',
         borderColor3: 'var(--border-color-3)',
+        borderColor4: 'var(--border-color-4)',
         gradientTextFrom: 'var(--gradient-text-from)',
         gradientTextTo: 'var(--gradient-text-to)',
         primary: 'var(--primary-color)',

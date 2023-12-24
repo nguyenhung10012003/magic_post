@@ -1,5 +1,12 @@
 import {redirect} from "next/navigation";
 
-export default function Dashboard() {
-  redirect("/dashboard/main");
+export default async function Dashboard() {
+  if (typeof window === 'undefined') {
+    const {cookies} = (await import('next/headers'))
+      , role = cookies().get('role')?.value
+    console.log(role);
+    if (role === "coordinator") redirect("/dashboard/delivery")
+    else redirect("/dashboard/main")
+  }
+
 }

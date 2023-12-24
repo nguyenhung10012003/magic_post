@@ -5,6 +5,7 @@ import UserGroup from "@/components/icons/UserGroup";
 import MapPin from "@/components/icons/MapPin";
 import {IRoute} from "@/types/navigation";
 import Order from "@/components/icons/Order";
+import Truck from "@/components/icons/Truck";
 
 export const routes: IRoute[] = [
   {
@@ -33,6 +34,13 @@ export const routes: IRoute[] = [
     layout: '/dashboard',
     icon: <Order/>,
     path: 'order',
-    hasRole: ["tellers", "coordinator"]
+    hasRole: ["tellers"]
+  },
+  {
+    name: 'Quản lý đơn chuyển',
+    layout: '/dashboard',
+    icon: <Truck/>,
+    path: 'delivery',
+    hasRole: ["coordinator"]
   },
 ]

@@ -6,10 +6,10 @@ import SearchBar from "@/components/SearchBar";
 import Image from "next/image";
 import api from "@/config/api";
 import useSWR from "swr";
-import ErrorToast from "@/components/Toasts/ErrorToast";
 import OrderTimeline from "@/app/search/OrderTimeline";
 import {formatTimestamp} from "@/utils/date";
 import LoadingOverlay from "@/components/skeletons/LoadingOverlay";
+import {toast} from "react-toastify";
 
 const fetcher = (url: string) => api.get(url).then(res => res.data).then(data => data.data);
 const createTimeLineData = (data: any) => {
@@ -53,6 +53,7 @@ export default function Search() {
   const ladingCode = searchParams.get("ladingCode");
   const {data, error, isLoading} = useSWR(ladingCode ? `/search/${ladingCode}` : null, fetcher,
     {refreshInterval: 0, revalidateOnFocus: false});
+  const notFoundNotify = () => toast.error("Không tìm thấy mã vận đơn")
   return (
     <>
       {isLoading ?
@@ -70,7 +71,7 @@ export default function Search() {
             </section>
             :
             <section className={"flex flex-grow md:flex-row mt-10 lg:mx-20 md:mx-10 mx-5 flex-col"}>
-              {error && <ErrorToast message={"Không tìm thấy mã vận đơn!"} timeLife={1500}/>}
+              {error && notFoundNotify()}
               <div className={"flex-1 flex justify-center my-10 mx-10 flex-col"}>
                 <div className={"flex mb-10 px-3.5 flex-col"}>
                   <div className={"font-extrabold text-5xl uppercase text-yellow-500 dark:text-white"}>
