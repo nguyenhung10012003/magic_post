@@ -20,9 +20,9 @@ export default function DashboardLineChart(
         <h2 className="font-bold text-titleColor1 text-lg">{chartTitle}</h2>
         <div className="">
           <Datepicker
-            containerClassName="flex flex-row w-full bg-bgColor2 rounded-lg focus:ring-0 shadow-md align-middle"
-            toggleClassName="text-textColor1 px-3"
-            inputClassName="text-textColor1 w-full font-normal pl-4 py-1 bg-transparent flex align-middle z-2 placeholder:text-textColor1"
+            containerClassName="relative w-full bg-bgColor2 rounded-lg focus:ring-0 shadow-md align-middle"
+            toggleClassName="text-textColor1 px-3 absolute right-0 top-1/2 -translate-y-1/2"
+            inputClassName="h-full text-textColor1 w-full font-normal pl-4 pr-8 py-1 bg-transparent align-middle z-2 placeholder:text-textColor1"
             value={dateRange}
             onChange={(value) => setDateRange(value)}
             popoverDirection={"down"}

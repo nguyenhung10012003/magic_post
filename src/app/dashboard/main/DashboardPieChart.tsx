@@ -1,7 +1,7 @@
 import PieChart from "@/components/charts/PieChart";
 import {createPieChartOption, getPieChartColor} from "@/utils/chart";
 import Card from "@/components/card";
-import SelectMenu from "@/components/selectors/SelectMenu";
+import SelectListBox from "@/components/selectors/SelectListBox";
 import {useState} from "react";
 import {useTheme} from "next-themes";
 import api from "@/config/api";
@@ -24,11 +24,11 @@ const dateSelected = [
   },
 ]
 const createUrlApi = (user: IUser, selected: number) => {
-  if (user.role == "ADMIN")
+  if (user.role == "admin")
     return `/order/count?from=${dateSelected[selected].from}&to=${dateSelected[selected].to}`
-  if (user.role == 'TRANSACTION_POINT_MANAGER')
+  if (user.idBranch?.includes("TSP"))
     return `/order/count/transaction/${user.idBranch}?from=${dateSelected[selected].from}&to=${dateSelected[selected].to}`
-  if (user.role == 'GATHERING_POINT_MANAGER')
+  if (user.idBranch?.includes("GRP"))
     return `/order/count/gathering/${user.idBranch}?from=${dateSelected[selected].from}&to=${dateSelected[selected].to}`
 }
 
@@ -38,18 +38,18 @@ const createChartData = (data: any, user: IUser) => {
       data: [0, 0],
       categories: ["Đã nhận", "Đã gửi"]
     }
-  if (user.role == "ADMIN")
+  if (user.role == "admin")
     return {
       data: [data.confirmed || 0, data.shipping || 0, data.successful || 0],
       categories: ["Đã xác nhận", "Đang vận chuyển", "Đã hoàn thành"]
     }
 
-  if (user.role == 'TRANSACTION_POINT_MANAGER')
+  if (user.idBranch?.includes("TSP"))
     return {
       data: [data.orderReceived.total, data.orderSent.total],
       categories: ["Đã nhận", "Đã gửi"]
     }
-  if (user.role == 'GATHERING_POINT_MANAGER')
+  if (user.idBranch?.includes("GRP"))
     return {
       data: [data.receive, data.send],
       categories: ["Đã nhận", "Đã gửi"]
@@ -68,14 +68,15 @@ export default function DashboardPieChart({chartTitle = "", user}: {
   const selections = ["Hôm nay", "Tuần này", "Tuần trước", "Tháng này", "Tháng trước"];
   const [selected, setSelected] = useState(0);
   const {theme} = useTheme();
-  const {data, error, isLoading} = useSWR(createUrlApi(user, selected), fetcher, {});
+  const {data, error, isLoading} = useSWR(createUrlApi(user, selected), fetcher);
+  console.log(data)
   const chartDatas = createChartData(data, user)
   return (
     <Card extra="!p-6">
       <div className="flex flex-col mx-2 pb-2.5">
         <h2 className="font-bold text-titleColor1 text-lg text-center divide-y-2">{chartTitle}</h2>
         <div className="h-0.5 bg-bgColor1 mt-1"></div>
-        <SelectMenu selections={selections} selected={selected} setSelected={setSelected}/>
+        <SelectListBox selections={selections} selected={selected} setSelected={setSelected}/>
       </div>
       <div className="lg:h-[250px] md:h-[200px] sm:h-[300px]">
         <PieChart

@@ -24,7 +24,7 @@ const createWidgetDatas = (data ?: any, idBranch ?: string) => {
     return [
       {icon: <Order color={'blueSecondary'}/>, title: "Tổng số đơn hàng", subtitle: data?.data.total || "0"},
       {icon: <Truck color={'blueSecondary'}/>, title: "Đơn hàng đang chuyển", subtitle: data?.data.shipping || "0"},
-      {icon: <Check color={'blueSecondary'}/>, title: "Đơn hàng đã chuyển", subtitle: data?.data.received || "0"},
+      {icon: <Check color={'blueSecondary'}/>, title: "Đơn hàng đã chuyển", subtitle: data?.data.successful || "0"},
       {icon: <Dollar color={'blueSecondary'}/>, title: "Đơn hàng hoàn lại", subtitle: data?.data.return || "0"}
     ];
   } else if (idBranch.includes("TSP")) {
