@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="bg-backDropColor mt-16">
+    <footer className="bg-backDropColor">
       <div className="mx-auto max-w-screen-xl px-4 pb-8 sm:px-6 lg:px-8">
         <div
           className="pt-3 border-t border-borderColor3 sm:flex sm:items-center sm:justify-between"

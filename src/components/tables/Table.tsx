@@ -13,7 +13,7 @@ export default function Table({titles, data, numberPerPage = 10, useFooter = fal
   return (
     <div className="overflow-x-auto">
       <table className="w-full table-auto text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <thead className="text-xs text-gray-800 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-100">
         <tr>
           {titles.map((title, index) => {
             return <th key={index} scope="col" className="px-4 py-3">{title}</th>
@@ -23,7 +23,7 @@ export default function Table({titles, data, numberPerPage = 10, useFooter = fal
         <tbody>
         {data.slice(pageNumber * numberPerPage, (pageNumber + 1) * numberPerPage).map((row, index) => {
           return (
-            <tr key={index} className="border-b dark:border-gray-700">
+            <tr key={index} className="border-b dark:border-gray-700 hover:bg-bgColor2">
               {row.map((cell, index) => {
                 return (
                   <td key={index} className={cellClassname}>{cell}</td>
@@ -50,9 +50,9 @@ export default function Table({titles, data, numberPerPage = 10, useFooter = fal
                       <span className="sr-only">Previous</span>
                       <svg className="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
                            xmlns="http://www.w3.org/2000/svg">
-                          <path fill-rule="evenodd"
+                          <path fillRule="evenodd"
                                 d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                                clip-rule="evenodd"/>
+                                clipRule="evenodd"/>
                       </svg>
                   </a>
               </li>
@@ -82,9 +82,9 @@ export default function Table({titles, data, numberPerPage = 10, useFooter = fal
                       <span className="sr-only">Next</span>
                       <svg className="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
                            xmlns="http://www.w3.org/2000/svg">
-                          <path fill-rule="evenodd"
+                          <path fillRule="evenodd"
                                 d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                clip-rule="evenodd"/>
+                                clipRule="evenodd"/>
                       </svg>
                   </a>
               </li>

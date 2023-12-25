@@ -20,6 +20,7 @@
     --border-color-1: #9ba5d0;
     --border-color-2: #4f46e5;
     --border-color-3: #A3AED0;
+    --border-color-4: #cdd5f1;
     --gradient-text-from: #F8DE22;
     --gradient-text-to: #F94C10;
     --primary-color: #F4F7FE;
@@ -51,5 +52,6 @@
     --border-color-1: #C9D0E3;
     --border-color-2: #F5F6FA;
     --border-color-3: #c7d1f1;
+    --border-color-4: #4d6199;
     --primary-color: #1B254B;
 }
