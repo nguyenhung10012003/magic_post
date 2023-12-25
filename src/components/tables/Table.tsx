@@ -39,9 +39,9 @@ export default function Table({titles, data, numberPerPage = 10, useFooter = fal
           aria-label="Table navigation">
                             <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
                                 Showing
-                                <span className="font-semibold text-gray-900 dark:text-white">1-10</span>
+                                <span className="font-semibold text-gray-900 dark:text-white"> 1-10 </span>
                                 of
-                                <span className="font-semibold text-gray-900 dark:text-white">1000</span>
+                                <span className="font-semibold text-gray-900 dark:text-white"> 1000</span>
                             </span>
           <ul className="inline-flex items-stretch -space-x-px">
               <li>
