@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice </title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="flex items-center justify-center min-h-screen bg-gray-100">
+        <div class="w-3/5 bg-white shadow-lg">
+            <!-- header -->
+            <div class="flex justify-between p-4">
+                <div class="pl-12">
+                    <svg">
+                        <img  class="w-20 h-20" src="../public/images/Logo with text.svg" />
+                    </svg>
+                </div>
+                <div class="pr-12">
+                    <img class="w-16 h-16 ml-4" src="https://cdn.britannica.com/17/155017-050-9AC96FC8/Example-QR-code.jpg" alt="">
+                    <p>MG33254355432</p>
+                </div>
+            </div>
+
+            <div class="w-full h-0.5 bg-indigo-500"></div>
+
+            <!-- body  -->
+            <div class="flex m-3 text-sm border-black border-2">
+                <!-- column left  -->
+                <div id="column-left" class="w-6/12">
+                    <div class=" p-2 leading-6 text-sm border-black border-2">
+                        <span class="font-bold">1. Họ tên địa chỉ người gửi: </span>
+                        <p>Pham Hoang</p>
+                        <p></p>
+                        <div class="flex"><span class="font-bold pr-1">Số điện thoại:</span>
+                            <p>0894</p>
+                        </div>
+                        <div class="flex justify-between">
+                            <div class="flex">
+                                <span class="font-bold pr-1">Mã khách hàng:</span>
+                                <p>123</p>
+                            </div>
+                            <div class="flex pr-5">
+                                <span class="font-bold pr-1">Mã bưu chính:</span>
+                                <p>123</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class=" p-2 leading-6 text-sm border-black border-2">
+                        <span class="font-bold">3. Loại hàng gửi </span>
+                        <div class="flex justify-between pl-5 pr-14">
+                            <div class="flex pl-5">
+                                <label for="myCheckbox" class="pr-2">Tài liệu</label>
+                                <input type="checkbox" id="myCheckbox" name="myCheckbox" value="option1" checked="true">
+                            </div>
+                            <div class="flex pr-10">
+                                <label for="myCheckbox" class="pr-2">Hàng hoá</label>
+                                <input type="checkbox" id="myCheckbox" name="myCheckbox" value="option1">
+                            </div>
+                        </div>
+                        <span class="font-bold">4. Nội dung giá trị bưu gửi </span>
+                        <div class="relative overflow-x-auto border-black border-2 sm:rounded-lg">
+                            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                <thead class="bg-gray-400 text-gray-900">
+                                    <tr>
+                                        <th scope="col" class="pl-3 py-1 w-2/5">
+                                            Nội dung
+                                        </th>
+                                        <th scope="col" class="text-center py-1">
+                                            Số lượng
+                                        </th>
+                                        <th scope="col" class="text-center py-1">
+                                            Trị giá
+                                        </th>
+                                        <th scope="col" class="text-center py-1">
+                                            Đính kèm
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center">
+                                    <tr class="text-left bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                        <th scope="row"
+                                            class="pl-4 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            Apple
+                                        </th>
+                                        <td class="text-center py-1">
+                                            1
+                                        </td>
+                                        <td class="text-center py-1">
+                                            1
+                                        </td>
+                                        <td class="text-center py-1">
+                                            0
+                                        </td>
+
+                                    </tr>
+                                    <tr class="text-left bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                        <th scope="row"
+                                            class="pl-4 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            Micro
+                                        </th>
+                                        <td class="text-center py-1">
+                                            1
+                                        </td>
+                                        <td class="text-center py-1">
+                                            1
+                                        </td>
+                                        <td class="text-center py-1">
+                                            1
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <div class=" p-2 leading-6 text-sm border-black border-2">
+                        <span class="font-bold">5. Dịch vụ đặc biệt cộng thêm </span>
+                        <p>...........................................................................................................................................
+                        ...........................................................................................................................................
+                        </p>
+                    </div>
+
+                    <div class=" p-2 leading-6 text-sm border-black border-2">
+                        <span class="font-bold">6. Chỉ dẫn của người gửi khi không phát được bưu gửi </span>
+                        <div class="flex">
+                            <div class="flex pr-5">
+                                <input type="checkbox" id="myCheckbox" name="myCheckbox" value="option1">
+                                <label for="myCheckbox" class="pl-1">Chuyển hoàn ngay</label>
+                            </div>
+                            <div class="flex pr-5">
+                                <input type="checkbox" id="myCheckbox" name="myCheckbox" value="option1">
+                                <label for="myCheckbox" class="pl-1">Gọi điện cho người gửi/BC gửi</label>
+
+                            </div>
+                            <div class="flex">
+                                <input type="checkbox" id="myCheckbox" name="myCheckbox" value="option1">
+                                <label for="myCheckbox" class="pl-1">Huỷ</label>
+                            </div>
+                        </div>
+                        <div class="flex text-siz">
+                            <div class="flex pr-2">
+                                <input type="checkbox" id="myCheckbox" name="myCheckbox" value="option1">
+                                <label for="myCheckbox" class="pl-1">Chuyển hoàn trước ngày</label>
+                            </div>
+                            <div class="flex">
+                                <input type="checkbox" id="myCheckbox" name="myCheckbox" value="option1">
+                                <label for="myCheckbox" class="pl-1">Chuyển hoàn khi hết thời gian lưu trữ</label>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class=" p-2 leading-6 text-sm border-black border-2">
+                        <span class="font-bold">7. Cam kết của người gửi</span>
+                        <p>Tôi chấp nhận các điều khoản tại mặt sau phiếu gửi</p>
+                        <div class="flex justify-between pb-10">
+                            <div>
+                                <span class="font-bold">8. Ngày giờ gửi</span>
+                                <p id="datetime"></p>
+                            </div>
+                            <span class="font-bold pr-5">Chữ ký người gửi</span>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <!-- column right  -->
+                <div id="column-right" class="w-6/12">
+                    <div class=" p-2 leading-6 text-sm border-black border-2">
+                        <span class="font-bold">2. Họ tên địa chỉ người nhận: </span>
+                        <p>Pham Hoang</p>
+                        <p></p>
+                        <div class="flex"><span class="font-bold pr-1">Số điện thoại:</span>
+                            <p>0894</p>
+                        </div>
+                        <div class="flex justify-between">
+                            <div class="flex">
+                                <span class="font-bold pr-1">Mã khách hàng:</span>
+                                <p>123</p>
+                            </div>
+                            <div class="flex pr-5">
+                                <span class="font-bold pr-1">Mã bưu chính:</span>
+                                <p>123</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div class="w-3/5">
+                            <div class="p-2 leading-6 text-sm border-black border-2">
+                                <span class="font-bold">9. Cước</span>
+                                <div class="flex justify-between">
+                                    <p>a. Cước chính</p>
+                                    <p>111</p>
+                                </div>
+                                <div class="flex justify-between">
+                                    <p>b. Phụ phí</p>
+                                    <p>111</p>
+                                </div>
+                                <div class="flex justify-between">
+                                    <p>c. Cước GTGT</p>
+                                    <p>111</p>
+                                </div>
+                                <div class="flex justify-between">
+                                    <p>d. Tổng cước</p>
+                                    <p>111</p>
+                                </div>
+                                <div class="flex justify-between">
+                                    <p>e. Thu khóc</p>
+                                    <p>111</p>
+                                </div class="flex justify-between">
+                                <span class="font-bold">f. Tổng thu</span>
+                                <span>11111</span>
+                            </div>
+
+                            <div class="p-2 leading-6 text-sm border-black border-2">
+                                <span class="font-bold">11. Thu của người nhận</span>
+                                <div class="flex justify-between">
+                                    <p>COD</p>
+                                    <p>111</p>
+                                </div>
+                                <div class="flex justify-between">
+                                    <p>Thu khác</p>
+                                    <p>111</p>
+                                </div>
+                                <div class="flex justify-between">
+                                    <p>Tổng thu</p>
+                                    <p>111</p>
+                                </div>
+                            </div>
+                            <div class="text-center items-center justify-center p-2 pb-5 leading-6 text-sm border border-black ">
+                                <span class="font-bold">13. Bưu cục chấp nhận</span>
+                                <p>Chữ ký GDV nhận</p>
+                                <img class="w-20 h-20 ml-20" src="https://khacdautn.com/wp-content/uploads/2021/08/logo-khacdautn.png" alt="">
+                                <p>GDV: </p>
+                            </div>
+                        </div>
+                        <div class="w-2/5">
+                            <div class="p-2 leading-6 text-sm border-black border-2">
+                                <span class="font-bold">10. Khối lượng</span>
+                                <div class="flex justify-between">
+                                    <p>Khối lượng thực tế</p>
+                                    <p>111</p>
+                                </div>
+                                <div class="flex justify-between">
+                                    <p>Khối lượng quy đổi</p>
+                                    <p>111</p>
+                                </div>
+                            </div>
+                            <div class="p-2 leading-6 text-sm border-black border-2">
+                                <span class="font-bold">12. Chú dẫn nghiệp vụ</span>
+                                <p class="p-10"></p>
+                            </div>
+                            <div class="p-2 leading-6 text-sm border-black border-2">
+                                <span class="font-bold">14. Ngày giờ nhận</span>
+                                <p class="font-bold text-center">....h..../..../..../....</p>
+                                <div class="text-center">
+                                    <p>Người nhận được uỷ quyền nhận</p>
+                                    <p>Ký ghi rõ họ tên</p>
+                                    <div class="h-32"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+
+            </div>
+            <!-- footer  -->
+            <div class="flex justify-between p-4">
+                <div>
+                    <h3 class="text-xl">Terms And Condition :</h3>
+                    <ul class="text-xs list-disc list-inside">
+                        <li>All accounts are to be paid within 7 days from receipt of invoice.</li>
+                        <li>To be paid by cheque or credit card or direct payment online.</li>
+                        <li>If account is not paid within 7 days the credits details supplied.</li>
+                    </ul>
+                </div>
+                <div class="p-4">
+                    <h3>Signature</h3>
+                    <div class="text-4xl italic text-indigo-500">AAA</div>
+                </div>
+            </div>
+            <div class="w-full h-0.5 bg-indigo-500"></div>
+
+            <div class="p-4">
+                <div class="flex items-center justify-center">
+                    Thank you very much for doing business with us.
+                </div>
+                <div class="flex items-end justify-end space-x-3">
+                    <button class="px-4 py-2 text-sm text-green-600 bg-green-100">Print</button>
+                    <button class="px-4 py-2 text-sm text-blue-600 bg-blue-100">Save</button>
+                    <button class="px-4 py-2 text-sm text-red-600 bg-red-100">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="flex items-center justify-center min-h-screen bg-gray-100">
+        <div class="w-6/12 mt-4 text-left bg-white shadow-lg">
+            <div class="flex justify-between px-8 py-6">
+                <div class="flex items-center">
+                    sale invoice
+                </div>
+                <div class="flex items-center gap-4">
+                    <button class="px-2 py-1 bg-gray-200 hover:bg-gray-400">Save</button>
+                    <button class="px-2 py-1 bg-gray-200 hover:bg-gray-400">Print</button>
+                </div>
+            </div>
+            <div class="w-full h-0.5 bg-gray-800"></div>
+
+        </div>
+    </div>
+</body>
+
+</html>
