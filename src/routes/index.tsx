@@ -6,6 +6,7 @@ import MapPin from "@/components/icons/MapPin";
 import {IRoute} from "@/types/navigation";
 import Order from "@/components/icons/Order";
 import Truck from "@/components/icons/Truck";
+import Statistic from "@/components/icons/Statistic";
 
 export const routes: IRoute[] = [
   {
@@ -13,7 +14,7 @@ export const routes: IRoute[] = [
     layout: '/dashboard',
     path: '/main',
     icon: <Square2x2/>,
-    hasRole: ["admin", "transaction_point_manager", 'gathering_point_manager', 'tellers']
+    hasRole: ["admin", "transaction_point_manager", 'gathering_point_manager']
   },
   {
     name: 'Quản lý tài khoản',
@@ -42,5 +43,12 @@ export const routes: IRoute[] = [
     icon: <Truck/>,
     path: 'delivery',
     hasRole: ["coordinator"]
+  },
+  {
+    name: 'Thống kê',
+    layout: '/dashboard',
+    path: '/statistic',
+    icon: <Statistic/>,
+    hasRole: ["admin", "transaction_point_manager", 'gathering_point_manager']
   },
 ]

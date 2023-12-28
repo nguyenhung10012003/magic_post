@@ -4,7 +4,6 @@ import {useState} from "react";
 import OrderTable from "@/app/dashboard/order/OrderTable";
 import CreateOrderModal from "@/components/modals/CreateOrderModal";
 import {DateRange} from "@/utils/date";
-import {utils, writeFile} from 'xlsx';
 import {
   ArrowRightIcon,
   ClipboardDocumentCheckIcon,
@@ -15,6 +14,8 @@ import api from "@/config/api";
 import useSWR from "swr";
 import {useAuth} from "@/hook/AuthContext";
 import {toast} from "react-toastify";
+import SearchFilter from "@/components/filters/SearchFilter";
+import {handleExportData} from "@/utils/export";
 
 const fetcher = (url: string) => api.get(url).then(res => res.data).then(data => data.data);
 
@@ -31,14 +32,14 @@ export default function Order() {
     mutate
   } = useSWR(`/order/statistic/transaction/${user.idBranch}?from=2010-01-01&to=2025-12-12`, fetcher);
   const tableTab = [
-    {icon: <HomeIcon className="h-4 w-4"/>, title: "Đơn hàng"},
+    {icon: <HomeIcon className="h-4 w-4"/>, title: "Tất cả"},
     {icon: <ClipboardDocumentCheckIcon className="h-4 w-4"/>, title: "Đã xác nhận"},
     {icon: <ArrowRightIcon className="h-4 w-4"/>, title: "Đang tới"},
     {icon: <ClipboardDocumentListIcon className="h-4 w-4"/>, title: "Đơn nhận"}
   ];
   const [tab, setTab] = useState(0);
   const filter = (data: any[], statusFilter: string[] = ["ALL", "CONFIRMED", "SHIPPING", "RECEIVED", "SUCCESSFUL", "RETURN"]) => {
-    statusFilter.filter((item, index) => {
+    statusFilter = statusFilter.filter((item, index) => {
       return statusSelected[index];
     });
     return data.filter((d: any) => {
@@ -49,21 +50,23 @@ export default function Order() {
       }
       return statusFilter.includes(d.orderStatus) && res;
     })
-
   }
   const createTable = (tab: number) => {
     if (tab === 3) return (
       <OrderTable data={filter(data.ordersReceive, ["", "", "", "RECEIVED"])}
                   addBtn={[
                     {
-                      value: "Đã chuyển hàng",
+                      value: "Đã giao hàng",
                       onClick: (ordersSelected: any[]) => {
-                        console.log(ordersSelected)
-                        api.post(`/order/receive/${user.idBranch}`, ordersSelected).then(() => {
-                          const notify = () => toast.info("Thao tác thành công")
-                          notify();
-                          mutate();
-                        }).catch(() => {
+                        api.put(`/order`, ordersSelected.map((o, index) => {
+                          return {id: o, status: 'SUCCESSFUL'}
+                        }))
+                          .then(() => {
+                            mutate().then(() => {
+                              const notify = () => toast.info("Thao tác thành công")
+                              notify();
+                            })
+                          }).catch(() => {
                           const notify = () => toast.error("Đã có lỗi xảy ra")
                           notify();
                         })
@@ -72,12 +75,15 @@ export default function Order() {
                     {
                       value: "Hàng bị hoàn lại",
                       onClick: (ordersSelected: any[]) => {
-                        console.log(ordersSelected)
-                        api.post(`/order/return/${user.idBranch}`, ordersSelected).then(() => {
-                          const notify = () => toast.info("Thao tác thành công")
-                          notify();
-                          mutate();
-                        }).catch(() => {
+                        api.put(`/order`, ordersSelected.map((o, index) => {
+                          return {id: o, status: 'RETURN'}
+                        }))
+                          .then(() => {
+                            mutate().then(() => {
+                              const notify = () => toast.info("Thao tác thành công")
+                              notify();
+                            })
+                          }).catch(() => {
                           const notify = () => toast.error("Đã có lỗi xảy ra")
                           notify();
                         })
@@ -91,7 +97,6 @@ export default function Order() {
                   addBtn={[{
                     value: "Đã nhận hàng",
                     onClick: (ordersSelected: any[]) => {
-                      console.log(ordersSelected)
                       api.post(`/order/receive/${user.idBranch}`, ordersSelected).then(() => {
                         const notify = () => toast.info("Thao tác thành công")
                         notify();
@@ -108,7 +113,6 @@ export default function Order() {
                   addBtn={[{
                     value: "Xác nhận chuyển đi",
                     onClick: (ordersSelected: any[]) => {
-                      console.log(ordersSelected)
                       api.post(`/order/send/${user.idBranch}`, ordersSelected).then(() => {
                         const notify = () => toast.info("Thao tác thành công")
                         notify();
@@ -120,17 +124,11 @@ export default function Order() {
                     }
                   }]}
       />)
-    else return <OrderTable data={filter(data.ordersSend)}/>
+    else return <OrderTable data={filter(data.ordersSend.concat(data.ordersReceive))}/>
   }
 
   const handleCreateModelOpen = () => {
     setCreateModalOpen(true);
-  }
-  const handleExportData = () => {
-    let wb = utils.book_new();
-    let ws = utils.json_to_sheet(data.ordersSend);
-    utils.book_append_sheet(wb, ws, "Sheet1");
-    writeFile(wb, "report.xlsx")
   }
   return (
     <section className="flex flex-col">
@@ -145,7 +143,7 @@ export default function Order() {
           <span className="text-xl">&#43;</span> Đơn hàng mới
         </button>
         <button
-          onClick={handleExportData}
+          onClick={() => handleExportData(data.ordersSend.concat(data.ordersReceive))}
           className="bg-white dark:bg-navy-500 border-borderColor4 border-2 dark:hover:bg-navy-400
           hover:bg-bgColor4 text-textColor1 font-bold py-2 px-4 rounded-lg inline-flex items-center">
           <svg className="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -156,19 +154,8 @@ export default function Order() {
       </div>
       <div className="md:flex flex-row border-b-2 border-borderColor4 justify-between">
         {/*Search bar*/}
-        <div className="relative flex my-3">
-          <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-            <svg className="w-4 h-4 text-horizonTeal-500" aria-hidden="true"
-                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-              <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-            </svg>
-          </div>
-          <input type="search" id="default-search"
-                 className="block w-full focus-visible:outline-0 ps-10 p-2 rounded-lg text-sm
-                 bg-primary border-borderColor4 border-2 text-textColor1"
-                 placeholder="Tìm kiếm nhanh"/>
-        </div>
+        <SearchFilter key={""} setKey={() => {
+        }}/>
         {/*Group filters*/}
         <TableFilter dateRange={dateRange} setDateRange={setDateRange} statusSelections={statusSelections}
                      statusSelected={statusSelected} setStatusSelected={setStatusSelected}

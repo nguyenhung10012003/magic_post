@@ -69,14 +69,14 @@ export default function DashboardPieChart({chartTitle = "", user}: {
   const [selected, setSelected] = useState(0);
   const {theme} = useTheme();
   const {data, error, isLoading} = useSWR(createUrlApi(user, selected), fetcher);
-  console.log(data)
   const chartDatas = createChartData(data, user)
   return (
     <Card extra="!p-6">
       <div className="flex flex-col mx-2 pb-2.5">
         <h2 className="font-bold text-titleColor1 text-lg text-center divide-y-2">{chartTitle}</h2>
         <div className="h-0.5 bg-bgColor1 mt-1"></div>
-        <SelectListBox selections={selections} selected={selected} setSelected={setSelected}/>
+        <SelectListBox selections={selections} selected={selected} setSelected={setSelected}
+                       selectBtnClassname="bg-bgColor4 hover:bg-bgColor1 w-[150px] rounded-lg"/>
       </div>
       <div className="lg:h-[250px] md:h-[200px] sm:h-[300px]">
         <PieChart

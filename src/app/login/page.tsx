@@ -5,6 +5,7 @@ import Link from "next/link";
 import {useState} from "react";
 import {useRouter} from "next/navigation";
 import {useAuth} from "@/hook/AuthContext";
+import {toast} from "react-toastify";
 
 
 export default function Example() {
@@ -20,10 +21,13 @@ export default function Example() {
       try {
         const result = await login({username: username, password: password});
         if (result) {
+          let notify = () => toast.info("Chào ừng bạn trở lại");
+          notify();
           router.push('/dashboard');
         }
       } catch (e) {
-        setWarning("Đã có lỗi xảy ra")
+        const notify = () => toast.error("Đăng nhập thất bại: Sai tài khoản hoặc mật khẩu")
+        notify();
       }
     }
   }
