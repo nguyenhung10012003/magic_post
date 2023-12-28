@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Dropdown from '@/components/dropdown';
 import NavLink from '@/components/link/NavLink';
 import Search from "@/components/icons/Search";
@@ -7,6 +7,7 @@ import Bars3 from "@/components/icons/Bars3";
 import {useTheme} from "next-themes";
 import Moon from "@/components/icons/Moon";
 import Sun from "@/components/icons/Sun";
+import {useAuth} from "@/hook/AuthContext";
 
 const Navbar = (props: {
   onOpenSidenav: () => void;
@@ -16,6 +17,46 @@ const Navbar = (props: {
 }) => {
   const {onOpenSidenav, brandText, mini, hovered} = props;
   const {theme, setTheme} = useTheme();
+  const {user} = useAuth();
+  const [key, setKey] = useState("");
+  const feature = [
+    {
+      name: ['Trang chính', "Đếm", "Biểu đồ", "Tổng số đơn hàng"],
+      path: '/dashboard/main',
+      hasRole: ["admin", "transaction_point_manager", 'gathering_point_manager']
+    },
+    {
+      name: ['Quản lý tài khoản', 'Cấp tài khoản mới', 'Sửa tài khoản', 'Đổi mật khẩu'],
+      path: '/dashboard/user',
+      hasRole: ["admin", "transaction_point_manager", 'gathering_point_manager']
+    },
+    {
+      name: ['Quản lý chi nhánh', 'Thêm chi nhánh mới'],
+      path: '/dashboard/branch',
+      hasRole: ["admin"]
+    },
+    {
+      name: ['Quản lý đơn hàng', 'Tạo đơn hàng', 'Cập nhật đơn hàng'],
+      path: '/dashboard/order',
+      hasRole: ["tellers"]
+    },
+    {
+      name: ['Quản lý đơn chuyển'],
+      path: '/dashboard/delivery',
+      hasRole: ["coordinator"]
+    },
+    {
+      name: ['Thống kê'],
+      path: '/dashboard/statistic',
+      hasRole: ["admin", "transaction_point_manager", 'gathering_point_manager']
+    },
+  ]
+  const keyLibrary = feature.filter((f) => {
+    if (key && key.length !== 0) {
+      return f.hasRole.includes(user.role);
+    }
+  })
+  console.log(keyLibrary);
 
   return (
     <nav
@@ -54,15 +95,20 @@ const Navbar = (props: {
           rounded-full px-2 py-2 shadow-xl shadow-shadow-500 md:w-[430px] md:flex-grow-0 md:gap-1
           xl:w-[430px] xl:gap-2 ${theme === 'dark' ? '!bg-navy-800 shadow-none' : 'bg-white '}`}>
         <div
-          className={`flex h-full items-center rounded-full bg-primary text-textColor1 w-full ${theme === 'dark' && 'shadow-none'}`}>
+          className={`flex h-full items-center rounded-full bg-primary text-textColor1 relative w-full ${theme === 'dark' && 'shadow-none'}`}>
           <p className="pl-3 pr-2 text-xl">
             <Search color={theme === 'dark' ? 'white' : undefined}/>
           </p>
           <input
             type="text"
+            value={key}
+            onChange={(e) => setKey(e.target.value)}
             placeholder="Tìm kiếm..."
             className="block h-full w-full bg-primary text-sm font-medium text-textColor1 outline-none placeholder:!text-placeholderColor sm:w-fit"
           />
+          {key?.length > 0 &&
+              <div
+                  className="absolute h-[200px] w-full bg-primary mt-3 translate-y-1 top-0 rounded-lg shadow-lg">aaa</div>}
         </div>
         <span
           className="flex cursor-pointer text-xl xl:hidden hover:text-navy-500 rounded-full bg-bgColor2 p-[8px] hover:bg-bgColor3"
@@ -103,13 +149,13 @@ const Navbar = (props: {
 
             <div className="ml-4 mt-3 flex flex-col">
               <a
-                href=""
+                href="/profile"
                 className="text-sm text-textColor1"
               >
                 Cá nhân
               </a>
               <a
-                href=""
+                href="/setting"
                 className="mt-3 text-sm text-textColor1"
               >
                 Cài đặt

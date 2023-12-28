@@ -2,10 +2,11 @@ import {Fragment} from 'react'
 import {Listbox, Transition} from '@headlessui/react'
 import {CheckIcon, ChevronUpDownIcon} from '@heroicons/react/20/solid'
 
-export default function SelectListBox({selections, selected, setSelected}: {
+export default function SelectListBox({selections, selected, setSelected, selectBtnClassname}: {
   selections: string[],
   selected: number,
-  setSelected: any
+  setSelected: any,
+  selectBtnClassname?: string
 }) {
 
   return (
@@ -13,7 +14,8 @@ export default function SelectListBox({selections, selected, setSelected}: {
       <Listbox value={selected} onChange={setSelected}>
         <div className="relative mt-1">
           <Listbox.Button
-            className="relative w-[150px] cursor rounded-lg bg-bgColor4 py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 text-[16px] hover:bg-bgColor1">
+            className={`relative cursor py-2 pl-3 pr-10 text-left shadow-md 
+            text-[16px] ${selectBtnClassname}`}>
             <span className="block truncate text-textColor1">{selections[selected]}</span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
               <ChevronUpDownIcon
@@ -32,7 +34,7 @@ export default function SelectListBox({selections, selected, setSelected}: {
             leaveTo="transform scale-50 opacity-0"
           >
             <Listbox.Options
-              className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-bgColor1 py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
+              className="absolute z-10 mt-1 max-h-60 overflow-auto rounded-md py-1 text-base shadow-lg sm:text-sm w-full bg-bgColor1">
               {selections.map((selection, idx) => (
                 <Listbox.Option
                   key={idx}
