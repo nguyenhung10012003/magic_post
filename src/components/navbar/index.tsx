@@ -61,7 +61,7 @@ const Navbar = (props: {
       return {name: n, path: item.path}
     })
   }).flat(1).filter((k) => {
-    return k.name.match(key)
+    return k.name.toLowerCase().match(key.toLowerCase())
   });
 
   return (

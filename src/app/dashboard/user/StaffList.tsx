@@ -42,11 +42,13 @@ const StaffList = ({user}: {
           <p key={0} className={"font-medium text-gray-900 whitespace-nowrap dark:text-white"}>{d.id}</p>,
           <p className="text-textColor1 truncate" key={1}>{d.username}</p>,
           <p className="text-textColor1 truncate" key={2}>{d.role}</p>,
-          <div
-            key={5}>
+          <div className="flex"
+               key={5}>
             <button type="button"
                     onClick={() => handleEditModalOpen(d)}
-                    className="text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    className="text-white bg-yellow-400 hover:bg-yellow-500 w-[120px] justify-center
+                    focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center
+                    inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5"
                    stroke="currentColor" className="w-5 h-5">
                 <path strokeLinecap="round" strokeLinejoin="round"
@@ -57,7 +59,9 @@ const StaffList = ({user}: {
             <button
               type="button"
               onClick={() => handleDeleteModelOpen(d)}
-              className="text-white bg-red-400 hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+              className="text-white bg-red-400 hover:bg-red-500 focus:ring-4 focus:outline-none w-[120px]
+              focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex
+              items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 justify-center">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5"
                    stroke="currentColor" className="w-5 h-5">
                 <path strokeLinecap="round" strokeLinejoin="round"
