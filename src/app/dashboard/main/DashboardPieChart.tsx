@@ -66,7 +66,7 @@ export default function DashboardPieChart({chartTitle = "", user}: {
   user: IUser
 }) {
   const selections = ["Hôm nay", "Tuần này", "Tuần trước", "Tháng này", "Tháng trước"];
-  const [selected, setSelected] = useState(0);
+  const [selected, setSelected] = useState(3);
   const {theme} = useTheme();
   const {data, error, isLoading} = useSWR(createUrlApi(user, selected), fetcher);
   const chartDatas = createChartData(data, user)

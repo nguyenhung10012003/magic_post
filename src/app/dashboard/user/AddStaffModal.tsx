@@ -2,21 +2,20 @@ import api from '@/config/api';
 import {useState} from 'react';
 import useSWR from 'swr';
 import {toast} from "react-toastify";
-import { stringifyCookie } from 'next/dist/compiled/@edge-runtime/cookies';
 
 const fetcher = (url: string) => api.get(url).then(res => res.data).then(data => data.data);
 
 interface AddStaffModalProps {
-    onClose: () => void;
-    mutate: any;
-    idBranch: any;
+  onClose: () => void;
+  mutate: any;
+  idBranch: any;
 }
 
 interface FormData {
-    username: string;
-    password: string;
-    role: string;
-    idBranch: string;
+  username: string;
+  password: string;
+  role: string;
+  idBranch: string;
 }
 
 const AddStaffModal: React.FC<AddStaffModalProps> = ({onClose, mutate, idBranch}) => {
@@ -29,23 +28,23 @@ const AddStaffModal: React.FC<AddStaffModalProps> = ({onClose, mutate, idBranch}
 
   const returnFormData = (id: string) => {
     if (id === 'undefined' || !id) {
-        return {
-            username: '',
-            password: '',
-            role: '',
-            idBranch: ''
-        }
+      return {
+        username: '',
+        password: '',
+        role: '',
+        idBranch: ''
+      }
     } else {
-        return {
-            username: '',
-            password: '',
-            role: id.includes('TSP') ? 'TELLERS' : 'COORDINATOR',
-            idBranch: id
-        }
-    } 
-    
+      return {
+        username: '',
+        password: '',
+        role: id.includes('TSP') ? 'TELLERS' : 'COORDINATOR',
+        idBranch: id
+      }
+    }
+
   }
-  
+
   const [formData, setFormData] = useState<FormData>(returnFormData(idBranch));
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -55,25 +54,15 @@ const AddStaffModal: React.FC<AddStaffModalProps> = ({onClose, mutate, idBranch}
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(formData);
-    
+
     if (formData.username.length >= 24) {
-        let notify = () => toast.warning("Tên tài khoản cần ít hơn 24 kí tự!")
-        notify();
-    }
-    else if (formData.password.length >= 24) {
-        let notify = () => toast.warning("Độ dài mật khẩu cần ít hơn 24 kí tự!")
-        notify();
-    }
-    else {
-        // const data = {
-        //     username: formData.username,
-        //     password: formData.password,
-        //     role: formData.role.toUpperCase(),
-        //     idBranch: formData.id_branch
-        //   }
-        //   console.log(data)
-        api.post("/user", formData).then(() => {
+      let notify = () => toast.warning("Tên tài khoản cần ít hơn 24 kí tự!")
+      notify();
+    } else if (formData.password.length >= 24) {
+      let notify = () => toast.warning("Độ dài mật khẩu cần ít hơn 24 kí tự!")
+      notify();
+    } else {
+      api.post("/user", formData).then(() => {
         mutate().then(() => {
           let notify = () => toast.info("Thao tác thành công")
           notify();
@@ -83,7 +72,7 @@ const AddStaffModal: React.FC<AddStaffModalProps> = ({onClose, mutate, idBranch}
         let notify = () => toast.error("Đã có lỗi xảy ra")
         notify();
       })
-    } 
+    }
   };
 
   return (
@@ -146,53 +135,53 @@ const AddStaffModal: React.FC<AddStaffModalProps> = ({onClose, mutate, idBranch}
                 required
               />
             </div>
-            
-            { (idBranch == 'undefined' || !idBranch) && 
+
+            {(idBranch == 'undefined' || !idBranch) &&
                 <div>
                     <label htmlFor="role" className="block mb-2 text-sm font-medium text-gray-900">
-                    Vị trí nhân viên
+                        Vị trí nhân viên
                     </label>
                     <select
-                    id="role"
-                    name="role"
-                    value={formData.role}
-                    onChange={handleChange}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3"
+                        id="role"
+                        name="role"
+                        value={formData.role}
+                        onChange={handleChange}
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3"
                     >
-                    <option value="">Chọn vai trò</option>
-                    <option value="TRANSACTION_POINT_MANAGER">Trưởng điểm giao dịch</option>
-                    <option value="GATHERING_POINT_MANAGER">Trưởng điểm tập kết</option>
+                        <option value="">Chọn vai trò</option>
+                        <option value="TRANSACTION_POINT_MANAGER">Trưởng điểm giao dịch</option>
+                        <option value="GATHERING_POINT_MANAGER">Trưởng điểm tập kết</option>
                     </select>
                 </div>
             }
 
-            { (idBranch == 'undefined' || !idBranch) && 
+            {(idBranch == 'undefined' || !idBranch) &&
                 <div>
-                <label htmlFor="idBranch" className="block mb-2 text-sm font-medium text-gray-900">
-                    Chi nhánh trực thuộc
-                </label>
-                <select
-                    id="idBranch"
-                    name="idBranch"
-                    value={formData.idBranch}
-                    onChange={handleChange}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3"
-                >
-                <option value="">Chọn chi nhánh</option>
-                    {data &&
-                    data.transactionPoint.map((item: any) => (
-                        <option key={item.id} value={item.id}>
-                        {item.name}
-                        </option>
-                    ))}
-                    {data &&
-                    data.gatheringPoint.map((item: any) => (
-                        <option key={item.id} value={item.id}>
-                        {item.name}
-                        </option>
-                    ))}
-                </select>
-            </div>
+                    <label htmlFor="idBranch" className="block mb-2 text-sm font-medium text-gray-900">
+                        Chi nhánh trực thuộc
+                    </label>
+                    <select
+                        id="idBranch"
+                        name="idBranch"
+                        value={formData.idBranch}
+                        onChange={handleChange}
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3"
+                    >
+                        <option value="">Chọn chi nhánh</option>
+                      {data &&
+                        data.transactionPoint.map((item: any) => (
+                          <option key={item.id} value={item.id}>
+                            {item.name}
+                          </option>
+                        ))}
+                      {data &&
+                        data.gatheringPoint.map((item: any) => (
+                          <option key={item.id} value={item.id}>
+                            {item.name}
+                          </option>
+                        ))}
+                    </select>
+                </div>
             }
           </div>
           <button

@@ -2,7 +2,6 @@
 import SelectMenu from "@/components/selectors/SelectMenu";
 import {useState} from "react";
 import TransactionTable from "./TransactionTable";
-import {useAuth} from "@/hook/AuthContext";
 import GatheringTable from "./GatheringTable";
 import AddBranchModal from "./AddBranchModal";
 import api from "@/config/api";
@@ -44,9 +43,9 @@ export default function BranchList() {
                   <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <svg aria-hidden="true" className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor"
                          viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd"
+                      <path fillRule="evenodd"
                             d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                            clip-rule="evenodd"/>
+                            clipRule="evenodd"/>
                     </svg>
                   </div>
                   <input type="text" id="simple-search"
@@ -66,7 +65,7 @@ export default function BranchList() {
               >
                 <svg className="h-3.5 w-3.5 mr-2" fill="currentColor" viewBox="0 0 20 20"
                      xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path clip-rule="evenodd" fill-rule="evenodd"
+                  <path clipRule="evenodd" fillRule="evenodd"
                         d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"/>
                 </svg>
                 Thêm chi nhánh
@@ -80,14 +79,14 @@ export default function BranchList() {
                     type="button">
               <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" className="h-4 w-4 mr-2 text-gray-400"
                    viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd"
+                <path fillRule="evenodd"
                       d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z"
-                      clip-rule="evenodd"/>
+                      clipRule="evenodd"/>
               </svg>
               Filter
               <svg className="-mr-1 ml-1.5 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path clip-rule="evenodd" fill-rule="evenodd"
+                <path clipRule="evenodd" fillRule="evenodd"
                       d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
               </svg>
             </button>

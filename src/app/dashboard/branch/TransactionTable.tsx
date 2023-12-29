@@ -9,10 +9,10 @@ const createTableData = (data: any[]) => {
     return (
       [
         <p key={0} className={"font-medium text-gray-900 whitespace-nowrap dark:text-white"}>{d.id}</p>,
-        <p key={1}>{d.name}</p>,
-        <p key={2}>{d.address}</p>,
-        <p key={3}>{d.city}</p>,
-        <p key={4}>{d.gatheringPoint.id}</p>,
+        <p className="text-textColor1 truncate" key={1}>{d.name}</p>,
+        <p className="text-textColor1 truncate" key={2}>{d.address}</p>,
+        <p className="text-textColor1 truncate" key={3}>{d.city}</p>,
+        <p className="text-textColor1 truncate" key={4}>{d.gatheringPoint.id}</p>,
         <button key={5} id="apple-imac-27-dropdown-button" data-dropdown-toggle="apple-imac-27-dropdown"
                 className="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100"
                 type="button">

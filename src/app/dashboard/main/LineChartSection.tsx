@@ -58,18 +58,23 @@ const createLineChartDatas = (data: any, user: IUser) => {
   ]
 }
 export default function LineChartSection({user}: { user: IUser }) {
-  const [dateRange, setDateRange] = useState<DateRange>({
+  const defaultDateRange = {
     startDate: formatDateToYYYYMMDD(subDays(new Date(), 6)),
     endDate: formatDateToYYYYMMDD(new Date())
-  });
+  }
+  const [dateRange, setDateRange] = useState<DateRange>(defaultDateRange);
   const {data, isLoading, error} = useSWR(createUrl(user, dateRange), fetcher, {revalidateOnFocus: false});
 
+  const handleSetDateRange = (dateRange: any) => {
+    if (dateRange.startDate && dateRange.endDate) setDateRange(dateRange)
+    else setDateRange(defaultDateRange);
+  }
   return (
     <section className={`mt-8`}>
       <DashboardLineChart chartTitle={"Biểu đồ đường"}
                           chartDatas={createLineChartDatas(data, user)}
                           dateRange={dateRange}
-                          setDateRange={setDateRange}
+                          setDateRange={handleSetDateRange}
                           isLoading={isLoading}
       />
     </section>
