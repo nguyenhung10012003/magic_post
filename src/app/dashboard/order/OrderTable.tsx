@@ -7,9 +7,10 @@ import EditOrderModal from "@/components/modals/EditOrderModal";
 import ReceiptModal from "@/components/modals/ReceiptModal";
 
 
-export default function OrderTable({data, addBtn}: {
+export default function OrderTable({data, addBtn, mutate}: {
   data: any[]
   addBtn?: any[],
+  mutate: any
 }) {
 
   const [editModalOpen, setEditModalOpen] = useState(false);
@@ -106,7 +107,8 @@ export default function OrderTable({data, addBtn}: {
         })}
       </div>}
       {editModalOpen &&
-          <EditOrderModal isOpen={editModalOpen} closeModal={() => setEditModalOpen(false)} item={order}/>}
+          <EditOrderModal isOpen={editModalOpen} closeModal={() => setEditModalOpen(false)} item={order}
+                          mutate={mutate}/>}
       {printModalOpen &&
           <ReceiptModal closeModal={() => setPrintModalOpen(false)} isOpen={printModalOpen} order={order}/>}
     </Card>

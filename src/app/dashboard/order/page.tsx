@@ -90,7 +90,7 @@ export default function Order() {
                       }
                     }
                   ]}
-      />
+                  mutate={mutate}/>
     )
     else if (tab === 2) return (
       <OrderTable data={filter(data.ordersReceive, ["", "", "SHIPPING"])}
@@ -107,7 +107,7 @@ export default function Order() {
                       })
                     }
                   }]}
-      />)
+                  mutate={mutate}/>)
     else if (tab === 1) return (
       <OrderTable data={filter(data.ordersSend, ["", "CONFIRMED"])}
                   addBtn={[{
@@ -123,8 +123,8 @@ export default function Order() {
                       })
                     }
                   }]}
-      />)
-    else return <OrderTable data={filter(data.ordersSend.concat(data.ordersReceive))}/>
+                  mutate={mutate}/>)
+    else return <OrderTable data={filter(data.ordersSend.concat(data.ordersReceive))} mutate={mutate}/>
   }
 
   const handleCreateModelOpen = () => {

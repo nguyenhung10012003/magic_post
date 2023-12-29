@@ -1,11 +1,14 @@
 import {Fragment, useState} from "react";
 import {Dialog, Transition} from "@headlessui/react";
 import {toast} from "react-toastify";
+import api from "@/config/api";
 
-export default function EditOrderModal({isOpen, closeModal, item}: {
+const fetcher = (url: string) => api.get(url).then(res => res.data).then(data => data.data);
+export default function EditOrderModal({isOpen, closeModal, item, mutate}: {
   isOpen: boolean,
   closeModal: any,
-  item: any
+  item: any,
+  mutate: any,
 }) {
   const [order, setOrder] = useState(item);
   const handleEditSubmit = () => {
@@ -14,7 +17,28 @@ export default function EditOrderModal({isOpen, closeModal, item}: {
       const notify = () => toast.warning("Hãy nhập đầy đủ thông tin");
       notify();
     } else {
-      closeModal();
+      let newOrder = [{
+        id: order.id,
+        senderName: order.senderName,
+        senderAddress: order.senderAddress,
+        senderPhone: order.senderPhone,
+        receiverPhone: order.receiverPhone,
+        receiverName: order.receiverName,
+        receiverAddress: order.receiverAddress,
+        note: order.note,
+        tellersName: order.tellersName,
+      }]
+      api.put("/order", newOrder).then(() => {
+        mutate().then(() => {
+          let notify = () => toast.info("Sửa thành công")
+          notify();
+          closeModal();
+        })
+      }).catch(() => {
+        let notify = () => toast.error("Đã có lỗi xảy ra")
+        notify();
+      })
+
     }
   }
   return (
@@ -50,7 +74,7 @@ export default function EditOrderModal({isOpen, closeModal, item}: {
                   as="h3"
                   className="text-lg font-bold leading-6 text-titleColor1 pb-3"
                 >
-                  Tạo đơn hàng mới
+                  Sửa đơn hàng
                 </Dialog.Title>
                 <form>
                   <div className="grid grid-cols-1 md:grid-cols-8 gap-4 mb-4">
@@ -126,11 +150,6 @@ export default function EditOrderModal({isOpen, closeModal, item}: {
                       className="border p-2 rounded w-full bg-primary"
                       required={true}
                     />
-                  </div>
-                  <div className="mb-4">
-                    <select name={"to"} className="border p-2 rounded w-full bg-primary" required={true}>
-                      <option>Chọn điểm cuối</option>
-                    </select>
                   </div>
                   <div className="mb-4">
                   <textarea

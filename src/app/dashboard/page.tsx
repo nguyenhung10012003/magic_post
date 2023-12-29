@@ -6,6 +6,7 @@ export default async function Dashboard() {
       , role = cookies().get('role')?.value
     console.log(role);
     if (role === "coordinator") redirect("/dashboard/delivery")
+    else if (role === "tellers") redirect("dashboard/order")
     else redirect("/dashboard/main")
   }
 
