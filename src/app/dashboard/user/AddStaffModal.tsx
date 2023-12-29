@@ -83,14 +83,14 @@ const AddStaffModal: React.FC<AddStaffModalProps> = ({onClose, mutate, idBranch}
       aria-hidden="true"
       className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50"
     >
-      <div className="relative p-4 m-10 bg-white rounded-lg shadow-lg">
+      <div className="relative p-4 m-10 bg-bgColor1 rounded-lg shadow-lg">
         <div className="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5">
-          <h3 id="modalTitle" className="text-lg font-semibold text-gray-900">
+          <h3 id="modalTitle" className="text-lg font-semibold text-textColor1">
             Thêm tài khoản
           </h3>
           <button
             type="button"
-            className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg p-1 focus:outline-none"
+            className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-textColor1 rounded-lg p-1 focus:outline-none"
             onClick={onClose}
           >
             <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
@@ -106,7 +106,7 @@ const AddStaffModal: React.FC<AddStaffModalProps> = ({onClose, mutate, idBranch}
         <form onSubmit={handleSubmit}>
           <div className="grid gap-4 mb-4 sm:grid-cols-2">
             <div>
-              <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900">
+              <label htmlFor="username" className="block mb-2 text-sm font-medium text-textColor1">
                 Username
               </label>
               <input
@@ -115,13 +115,13 @@ const AddStaffModal: React.FC<AddStaffModalProps> = ({onClose, mutate, idBranch}
                 id="username"
                 value={formData.username}
                 onChange={handleChange}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-3"
+                className="bg-bgColor2 border border-gray-300 text-textColor1 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-3"
                 placeholder="Tên người dùng"
                 required
               />
             </div>
             <div>
-              <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">
+              <label htmlFor="password" className="block mb-2 text-sm font-medium text-textColor1">
                 Mật khẩu
               </label>
               <input
@@ -130,7 +130,7 @@ const AddStaffModal: React.FC<AddStaffModalProps> = ({onClose, mutate, idBranch}
                 id="password"
                 value={formData.password}
                 onChange={handleChange}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-3"
+                className="bg-bgColor2 border border-gray-300 text-textColor1 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-3"
                 placeholder="Mật khẩu cho tài khoản"
                 required
               />
@@ -138,7 +138,7 @@ const AddStaffModal: React.FC<AddStaffModalProps> = ({onClose, mutate, idBranch}
 
             {(idBranch == 'undefined' || !idBranch) &&
                 <div>
-                    <label htmlFor="role" className="block mb-2 text-sm font-medium text-gray-900">
+                    <label htmlFor="role" className="block mb-2 text-sm font-medium text-textColor1">
                         Vị trí nhân viên
                     </label>
                     <select
@@ -146,7 +146,7 @@ const AddStaffModal: React.FC<AddStaffModalProps> = ({onClose, mutate, idBranch}
                         name="role"
                         value={formData.role}
                         onChange={handleChange}
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3"
+                        className="bg-bgColor2 border border-gray-300 text-textColor1 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3"
                     >
                         <option value="">Chọn vai trò</option>
                         <option value="TRANSACTION_POINT_MANAGER">Trưởng điểm giao dịch</option>
@@ -157,7 +157,7 @@ const AddStaffModal: React.FC<AddStaffModalProps> = ({onClose, mutate, idBranch}
 
             {(idBranch == 'undefined' || !idBranch) &&
                 <div>
-                    <label htmlFor="idBranch" className="block mb-2 text-sm font-medium text-gray-900">
+                    <label htmlFor="idBranch" className="block mb-2 text-sm font-medium text-textColor1">
                         Chi nhánh trực thuộc
                     </label>
                     <select
@@ -165,7 +165,7 @@ const AddStaffModal: React.FC<AddStaffModalProps> = ({onClose, mutate, idBranch}
                         name="idBranch"
                         value={formData.idBranch}
                         onChange={handleChange}
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3"
+                        className="bg-bgColor2 border border-gray-300 text-textColor1 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3"
                     >
                         <option value="">Chọn chi nhánh</option>
                       {data &&

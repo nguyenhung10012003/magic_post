@@ -107,10 +107,10 @@ export default function BranchList() {
               }
               items={[
 
-                <div className="flex p-2">
+                <div className="flex p-2 bg-bgColor1 text-textColor1 w-full">
                   Điểm giao dịch
                 </div>,
-                <div className="flex p-2">
+                <div className="flex p-2 bg-bgColor1 text-textColor1 w-full">
                   Điểm tập kết
                 </div>,
 

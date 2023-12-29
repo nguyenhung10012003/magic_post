@@ -79,14 +79,14 @@ const AddBranchModal: React.FC<AddBranchModalProps> = ({onClose, mutate}) => {
       // Render additional select or any other UI elements for "Điểm giao dịch"
       return (
         <div>
-          <label htmlFor="id_grp" className="block mb-2 text-sm font-medium text-gray-900">
+          <label htmlFor="id_grp" className="block mb-2 text-sm font-medium text-textColor1">
             Điểm tập kết trực thuộc
           </label>
           <select
             onChange={handleChange}
             id="id_grp"
             name="id_grp"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3"
+            className="bg-gray-50 border border-gray-300 text-textColor1 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3"
           >
             <option value=''>Chọn điểm tập kết</option>
             {data &&
@@ -108,16 +108,16 @@ const AddBranchModal: React.FC<AddBranchModalProps> = ({onClose, mutate}) => {
       tabIndex={-1}
       aria-labelledby="modalTitle"
       aria-hidden="true"
-      className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50"
+      className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 "
     >
-      <div className="relative p-4 m-10 bg-white rounded-lg shadow-lg">
+      <div className="relative p-4 m-10 bg-bgColor1 rounded-lg shadow-lg">
         <div className="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5">
-          <h3 id="modalTitle" className="text-lg font-semibold text-gray-900">
+          <h3 id="modalTitle" className="text-lg font-semibold text-titleColor1">
             Thêm chi nhánh
           </h3>
           <button
             type="button"
-            className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg p-1 focus:outline-none"
+            className="text-textColor2 bg-transparent hover:bg-gray-200 hover:text-textColor1 rounded-lg p-1 focus:outline-none"
             onClick={onClose}
           >
             <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
@@ -133,7 +133,7 @@ const AddBranchModal: React.FC<AddBranchModalProps> = ({onClose, mutate}) => {
         <form onSubmit={handleSubmit}>
           <div className="grid gap-4 mb-4 sm:grid-cols-2">
             <div>
-              <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900">
+              <label htmlFor="name" className="block mb-2 text-sm font-medium text-textColor1">
                 Tên
               </label>
               <input
@@ -142,13 +142,13 @@ const AddBranchModal: React.FC<AddBranchModalProps> = ({onClose, mutate}) => {
                 id="name"
                 value={formData.name}
                 onChange={handleChange}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-3"
+                className="bg-bgColor2 border border-gray-300 text-textColor1 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-3"
                 placeholder="Tên chi nhánh"
                 required
               />
             </div>
             <div>
-              <label htmlFor="address" className="block mb-2 text-sm font-medium text-gray-900">
+              <label htmlFor="address" className="block mb-2 text-sm font-medium text-textColor1">
                 Địa chỉ
               </label>
               <input
@@ -157,13 +157,13 @@ const AddBranchModal: React.FC<AddBranchModalProps> = ({onClose, mutate}) => {
                 id="address"
                 value={formData.address}
                 onChange={handleChange}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-3"
+                className="bg-bgColor2 border border-gray-300 text-textColor1 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-3"
                 placeholder="Địa chỉ chi nhánh"
                 required
               />
             </div>
             <div>
-              <label htmlFor="city" className="block mb-2 text-sm font-medium text-gray-900">
+              <label htmlFor="city" className="block mb-2 text-sm font-medium text-textColor1">
                 Thành phố
               </label>
               <input
@@ -172,13 +172,13 @@ const AddBranchModal: React.FC<AddBranchModalProps> = ({onClose, mutate}) => {
                 id="city"
                 value={formData.city}
                 onChange={handleChange}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-3"
+                className="bg-bgColor2 border border-gray-300 text-textColor1 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-3"
                 placeholder="Chi nhánh thuộc thành phố"
                 required
               />
             </div>
             <div>
-              <label htmlFor="category" className="block mb-2 text-sm font-medium text-gray-900">
+              <label htmlFor="category" className="block mb-2 text-sm font-medium text-textColor1">
                 Loại chi nhánh
               </label>
               <select
@@ -186,7 +186,7 @@ const AddBranchModal: React.FC<AddBranchModalProps> = ({onClose, mutate}) => {
                 name="category"
                 value={formData.category}
                 onChange={handleChange}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3"
+                className="bg-bgColor2 border border-gray-300 text-textColor1 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3"
               >
                 <option value="">Chọn chi nhánh</option>
                 <option value="0">Điểm giao dịch</option>

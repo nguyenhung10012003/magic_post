@@ -9,7 +9,7 @@ const fetcher = (url: string) => api.get(url).then(res => res.data).then(data =>
 export default function ChooseLastDesModal({isOpen, closeModal, delivery, mutate}: {
   isOpen: boolean
   closeModal: any,
-  delivery: number,
+  delivery: any,
   mutate: any
 }) {
   const {data, error, isLoading} = useSWR(`/gathering-point`, fetcher, {revalidateOnFocus: false});
@@ -63,7 +63,7 @@ export default function ChooseLastDesModal({isOpen, closeModal, delivery, mutate
                 as="h3"
                 className="text-lg font-bold leading-6 text-titleColor1 pb-3"
               >
-                Chuyển hàng đi
+                Chọn điểm tập kết
               </Dialog.Title>
               {!isLoading && <form>
                   <select name={"to"} className="border p-2 rounded w-full bg-primary" required={true}

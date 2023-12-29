@@ -50,8 +50,8 @@ export default function Delivery() {
                             setCheckAll={setCheckAll}
                             addBtn={[
                               {
-                                value: "Chuyển hàng đi", onClick: () => {
-                                  ;
+                                value: "Chuyển hàng đi", onClick: (orderSelected: any[]) => {
+
                                   setOpenSendDeliveryModel(true)
                                 }
                               }
@@ -72,16 +72,21 @@ export default function Delivery() {
                             setCheckAll={setCheckAll}
                             addBtn={[
                               {
-                                value: "Đã nhận", onCLick: () => {
-                                  api.put(`/order/delivery`, {
-                                    nextDes: user.idBranch,
-                                    status: "RECEIVED",
-                                  }).then(() => {
-                                    mutate().then(() => {
-                                      let notify = () => toast.info("Thao tác thành công")
-                                      notify();
-                                    })
-                                  }).catch(() => {
+                                value: "Đã nhận", onClick: (orderSelected: any[]) => {
+                                  console.log(orderSelected);
+                                  api.put(`/order/delivery`, orderSelected.map((o) => {
+                                    return {
+                                      id: o,
+                                      nextDes: user.idBranch,
+                                      status: "RECEIVED",
+                                    }
+                                  }))
+                                    .then(() => {
+                                      mutate().then(() => {
+                                        let notify = () => toast.info("Thao tác thành công")
+                                        notify();
+                                      })
+                                    }).catch(() => {
                                     let err = () => toast.error("Đã có lỗi xảy ra");
                                     err();
                                   })
