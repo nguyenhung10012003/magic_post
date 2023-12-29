@@ -1,6 +1,7 @@
 import Table from "@/components/tables/Table";
 import Card from "@/components/card";
 import {useState} from "react";
+import ChooseLastDesModal from "@/components/modals/ChooseLastDesModal";
 
 export default function DeliveryTable({data, orderSelected, setOrderSelected, checkAll, setCheckAll, addBtn, mutate}: {
   data: any[],
@@ -12,6 +13,11 @@ export default function DeliveryTable({data, orderSelected, setOrderSelected, ch
   mutate: any
 }) {
   const [openChooseLastDes, setOpenChooseLastDes] = useState(false);
+  const [delivery, setDelivery] = useState();
+  const handleChooseLastDes = (d: any) => {
+    setDelivery(d);
+    setOpenChooseLastDes(true)
+  }
   const handleStatusCheckboxChange = (id: number, checked: boolean) => {
     if (checked) {
       setOrderSelected([...orderSelected, id]);
@@ -57,7 +63,7 @@ export default function DeliveryTable({data, orderSelected, setOrderSelected, ch
           <p key={3} className="text-textColor1 truncate max-w-[150px]">{data.order.ladingCode}</p>,
           data.lastDes ? <p key={4} className="text-textColor1 truncate max-w-[150px]">{data.lastDes.name}</p> :
             <button className="text-textColor1 truncate max-w-[150px] hover:underline hover:text-titleColor1"
-                    onClick={() => setOpenChooseLastDes(true)}>
+                    onClick={() => handleChooseLastDes(data.id)}>
               Chưa thiết lập
             </button>,
         ]
@@ -74,5 +80,8 @@ export default function DeliveryTable({data, orderSelected, setOrderSelected, ch
         )
       })}
     </div>}
+    <div>{delivery &&
+        <ChooseLastDesModal isOpen={openChooseLastDes} closeModal={() => setOpenChooseLastDes(false)}
+                            delivery={delivery} mutate={mutate}/>}</div>
   </Card>
 }

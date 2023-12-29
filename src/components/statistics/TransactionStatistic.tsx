@@ -9,7 +9,11 @@ const fetcher = (url: string) => api.get(url).then(res => res.data).then(data =>
 export default function TransactionStatistic({idBranch}: {
   idBranch: string
 }) {
-  const {data, isLoading, error} = useSWR(`/order/statistic/transaction/${idBranch}?from=2023-01-01&to=2024-12-30`, fetcher);
+  const {
+    data,
+    isLoading,
+    error
+  } = useSWR(`/order/statistic/transaction/${idBranch}?from=2023-01-01&to=2024-12-30`, fetcher);
   const [dateRange1, setDateRange1] = useState<DateRange>();
   const [dateRange2, setDateRange2] = useState<DateRange>();
   const handleExportData = (data: any[]) => {
@@ -87,7 +91,7 @@ export default function TransactionStatistic({idBranch}: {
                               <p key={8} className="text-textColor1 truncate max-w-[150px]">{d.charge.total}</p>,
                             ]
                           })}
-                          dateRange={dateRange2} setDateRange={setDateRange1}
+                          dateRange={dateRange2} setDateRange={setDateRange2}
                           handleExportData={() => handleExportData(data.ordersSend)}/>}
     </section>
   )

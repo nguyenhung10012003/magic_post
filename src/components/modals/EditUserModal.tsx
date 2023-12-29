@@ -76,7 +76,7 @@ export default function EditUserModal({isOpen, closeModal, user, mutate}: {
               </Dialog.Title>
               <form className="flex w-full mt-3 gap-2 md:flex-row flex-col" autoComplete="off">
                 <div className="flex w-full flex-col">
-                  <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900">
+                  <label htmlFor="username" className="block mb-2 text-sm font-medium text-textColor1">
                     Tên tài khoản mới
                   </label>
                   <input
@@ -84,13 +84,13 @@ export default function EditUserModal({isOpen, closeModal, user, mutate}: {
                     id="username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-3"
+                    className="bg-bgColor2 border border-gray-300 text-textColor1 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-3"
                     placeholder="Tên người dùng"
                     required
                   />
                 </div>
                 <div className="flex w-full flex-col">
-                  <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">
+                  <label htmlFor="password" className="block mb-2 text-sm font-medium text-textColor1">
                     Mật khẩu mới
                   </label>
                   <input
@@ -99,7 +99,7 @@ export default function EditUserModal({isOpen, closeModal, user, mutate}: {
                     id="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-3"
+                    className="bg-bgColor2 border border-gray-300 text-textColor1 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-3"
                     placeholder="Mật khẩu cho tài khoản"
                     required
                   />
