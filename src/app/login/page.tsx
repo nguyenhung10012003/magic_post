@@ -21,7 +21,7 @@ export default function Example() {
       try {
         const result = await login({username: username, password: password});
         if (result) {
-          let notify = () => toast.info("Chào ừng bạn trở lại");
+          let notify = () => toast.info("Chào mừng bạn trở lại");
           notify();
           router.push('/dashboard');
         }

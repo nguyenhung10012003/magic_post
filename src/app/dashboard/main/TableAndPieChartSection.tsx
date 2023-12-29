@@ -10,7 +10,7 @@ export default function TableAndPieChartSection({user}: {
         <DashboardPieChart chartTitle={"Biểu đồ tròn"} user={user}/>
       </div>
       <div className="col-span-2 md:pt-0 pt-10 h-full flex">
-        <DashboardTable/>
+        <DashboardTable user={user}/>
       </div>
     </section>
   )

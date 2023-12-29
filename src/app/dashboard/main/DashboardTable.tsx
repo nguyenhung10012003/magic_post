@@ -36,7 +36,8 @@ const createTableData = (data: any[], user: IUser) => {
     if (user.role == "admin")
       return (
         [
-          <p key={0} className={"font-medium text-gray-900 whitespace-nowrap dark:text-white"}>{d.transactionPointId}</p>,
+          <p key={0}
+             className={"font-medium text-gray-900 whitespace-nowrap dark:text-white"}>{d.transactionPointId}</p>,
           <p key={1} className={"font-medium text-gray-900 whitespace-nowrap dark:text-white"}>{d.name}</p>,
           <p key={2} className={"font-medium text-gray-900 whitespace-nowrap dark:text-white"}>{d.address}</p>,
           <p key={3} className={"font-medium text-gray-900 whitespace-nowrap dark:text-white"}>{d.receive}</p>,
@@ -47,27 +48,29 @@ const createTableData = (data: any[], user: IUser) => {
       return (
         [
           <p key={0} className={"font-medium text-gray-900 whitespace-nowrap dark:text-white"}>{index + 1}</p>,
-          <p key={1} className={"font-medium text-gray-900 whitespace-nowrap dark:text-white"}>{new Date(d.date).toDateString()}</p>,
+          <p key={1}
+             className={"font-medium text-gray-900 whitespace-nowrap dark:text-white"}>{new Date(d.date).toDateString()}</p>,
           <p key={2} className={"font-medium text-gray-900 whitespace-nowrap dark:text-white"}>{d.send}</p>,
           <p key={3} className={"font-medium text-gray-900 whitespace-nowrap dark:text-white"}>{d.receive}</p>,
-          
+
         ]
       )
-      else 
+    else
       return (
         [
           <p key={0} className={"font-medium text-gray-900 whitespace-nowrap dark:text-white"}>{index + 1}</p>,
-          <p key={1} className={"font-medium text-gray-900 whitespace-nowrap dark:text-white"}>{new Date(d.date).toDateString()}</p>,
+          <p key={1}
+             className={"font-medium text-gray-900 whitespace-nowrap dark:text-white"}>{new Date(d.date).toDateString()}</p>,
           <p key={2} className={"font-medium text-gray-900 whitespace-nowrap dark:text-white"}>{d.send}</p>,
           <p key={3} className={"font-medium text-gray-900 whitespace-nowrap dark:text-white"}>{d.receive}</p>,
-          
+
         ]
       )
   })
 }
 
 const createTableTitle = (user: IUser) => {
-  if (user.role == "admin") 
+  if (user.role == "admin")
     return (
       [
         <p key={0}>ID</p>,
@@ -99,23 +102,23 @@ const createTableTitle = (user: IUser) => {
 const DashboardTable = ({user}: {
   user: IUser
 }) => {
-    const selections = ["Hôm nay", "Tuần này", "Tuần trước", "Tháng này", "Tháng trước"];
-    const [selected, setSelected] = useState(0);
-    const {data, error, isLoading} = useSWR(createUrlApi(user, selected), fetcher);
-  console.log(user.role);
+  const selections = ["Hôm nay", "Tuần này", "Tuần trước", "Tháng này", "Tháng trước"];
+  const [selected, setSelected] = useState(0);
+  const {data, error, isLoading} = useSWR(createUrlApi(user, selected), fetcher);
   const titles = createTableTitle(user);
   return (
-      <Card extra="!grow">
-        <div className="flex flex-col ml-auto mr-8 pb-2.5">
-          <h2 className="font-bold text-titleColor1 text-lg text-center divide-y-2"></h2>
-          <div className="h-0.5 bg-bgColor1 mt-1"></div>
-          <SelectListBox selections={selections} selected={selected} setSelected={setSelected}
-                         selectBtnClassname="bg-bgColor4 hover:bg-bgColor1 w-[150px] rounded-lg"/>
-        </div>
-        <div className="mx-2">
-          {isLoading ? <Loader/> : <Table titles={titles} data={createTableData(data, user)} numberPerPage={4} useFooter={false}/>}  
-        </div>
-      </Card>
+    <Card extra="!grow">
+      <div className="flex flex-col ml-auto mr-8 pb-2.5">
+        <h2 className="font-bold text-titleColor1 text-lg text-center divide-y-2"></h2>
+        <div className="h-0.5 bg-bgColor1 mt-1"></div>
+        <SelectListBox selections={selections} selected={selected} setSelected={setSelected}
+                       selectBtnClassname="bg-bgColor4 hover:bg-bgColor1 w-[150px] rounded-lg"/>
+      </div>
+      <div className="mx-2">
+        {isLoading ? <Loader/> :
+          <Table titles={titles} data={createTableData(data, user)} numberPerPage={4} useFooter={false}/>}
+      </div>
+    </Card>
   )
 }
 export default DashboardTable;

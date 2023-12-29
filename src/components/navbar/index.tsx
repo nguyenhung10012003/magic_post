@@ -8,6 +8,7 @@ import {useTheme} from "next-themes";
 import Moon from "@/components/icons/Moon";
 import Sun from "@/components/icons/Sun";
 import {useAuth} from "@/hook/AuthContext";
+import Link from "next/link";
 
 const Navbar = (props: {
   onOpenSidenav: () => void;
@@ -55,8 +56,13 @@ const Navbar = (props: {
     if (key && key.length !== 0) {
       return f.hasRole.includes(user.role);
     }
-  })
-  console.log(keyLibrary);
+  }).map((item) => {
+    return item.name.map((n) => {
+      return {name: n, path: item.path}
+    })
+  }).flat(1).filter((k) => {
+    return k.name.match(key)
+  });
 
   return (
     <nav
@@ -108,7 +114,15 @@ const Navbar = (props: {
           />
           {key?.length > 0 &&
               <div
-                  className="absolute h-[200px] w-full bg-primary mt-3 translate-y-1 top-0 rounded-lg shadow-lg">aaa</div>}
+                  className="absolute max-h-[200px] w-full bg-primary mt-3 translate-y-[40px] top-0 rounded-lg shadow-lg overflow-auto">
+                {keyLibrary.map((key, i) => {
+                  return (
+                    <Link key={i} href={key.path}
+                          onClick={() => setKey("")}
+                          className="flex py-2 px-4 hover:text-textColor1 hover:bg-bgColor1">{key.name}</Link>
+                  )
+                })}
+              </div>}
         </div>
         <span
           className="flex cursor-pointer text-xl xl:hidden hover:text-navy-500 rounded-full bg-bgColor2 p-[8px] hover:bg-bgColor3"

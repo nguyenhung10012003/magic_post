@@ -1,9 +1,10 @@
 'use client'
-import {PencilSquareIcon} from "@heroicons/react/24/solid";
+import {PencilSquareIcon, PrinterIcon} from "@heroicons/react/24/solid";
 import Table from "@/components/tables/Table";
 import Card from "@/components/card";
 import {useEffect, useState} from "react";
 import EditOrderModal from "@/components/modals/EditOrderModal";
+import ReceiptModal from "@/components/modals/ReceiptModal";
 
 
 export default function OrderTable({data, addBtn}: {
@@ -12,6 +13,7 @@ export default function OrderTable({data, addBtn}: {
 }) {
 
   const [editModalOpen, setEditModalOpen] = useState(false);
+  const [printModalOpen, setPrintModalOpen] = useState(false);
   const [order, setOrder] = useState<any>();
   const [orderSelected, setOrderSelected] = useState<any[]>([]);
   const [checkAll, setCheckAll] = useState(false);
@@ -22,6 +24,10 @@ export default function OrderTable({data, addBtn}: {
   const handleEditModalOpen = (item: any) => {
     setOrder(item);
     setEditModalOpen(true);
+  };
+  const handlePrintModalOpen = (item: any) => {
+    setOrder(item);
+    setPrintModalOpen(true);
   };
   const handleStatusCheckboxChange = (id: number, checked: boolean) => {
     if (checked) {
@@ -76,8 +82,14 @@ export default function OrderTable({data, addBtn}: {
           <p key={6} className="text-textColor1 truncate max-w-[150px]">{data.ladingCode}</p>,
           <p key={7} className="text-textColor1 truncate max-w-[150px]">{data.orderStatus}</p>,
           <p key={8} className="text-textColor1 truncate max-w-[150px]">{data.charge.total}</p>,
-          <button key={0} onClick={() => handleEditModalOpen(data)}><PencilSquareIcon
-            className={"h-6 w-6 text-titleColor1"}/></button>,
+          <>
+            <button key={0} onClick={() => handleEditModalOpen(data)}>
+              <PencilSquareIcon className={"h-6 w-6 text-titleColor1"}/>
+            </button>
+            <button key={9} onClick={() => handlePrintModalOpen(data)}>
+              <PrinterIcon className={"h-6 w-6 text-titleColor1"}/>
+            </button>
+          </>,
         ]
       })
   }
@@ -95,6 +107,8 @@ export default function OrderTable({data, addBtn}: {
       </div>}
       {editModalOpen &&
           <EditOrderModal isOpen={editModalOpen} closeModal={() => setEditModalOpen(false)} item={order}/>}
+      {printModalOpen &&
+          <ReceiptModal closeModal={() => setPrintModalOpen(false)} isOpen={printModalOpen} order={order}/>}
     </Card>
   )
 }
