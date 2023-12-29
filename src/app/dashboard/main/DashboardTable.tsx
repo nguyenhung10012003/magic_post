@@ -107,8 +107,8 @@ const DashboardTable = ({user}: {
   const {data, error, isLoading} = useSWR(createUrlApi(user, selected), fetcher);
   const titles = createTableTitle(user);
   return (
-    <Card extra="!grow !overflow-x-auto">
-      <div className="flex pb-2.5 self-end px-4">
+    <Card extra="!grow !overflow-x-auto !overflow-y-auto">
+      <div className="flex flex-col ml-auto mr-8 pb-2.5">
         <h2 className="font-bold text-titleColor1 text-lg text-center divide-y-2"></h2>
         <div className="h-0.5 bg-bgColor1 mt-1"></div>
         <SelectListBox selections={selections} selected={selected} setSelected={setSelected}
@@ -116,7 +116,7 @@ const DashboardTable = ({user}: {
       </div>
       <div className="mx-2">
         {isLoading ? <Loader/> :
-          <Table titles={titles} data={createTableData(data, user)} numberPerPage={4} useFooter={false}/>}
+          <Table titles={titles} data={createTableData(data, user)} numberPerPage={4} useFooter={true}/>}
       </div>
     </Card>
   )
